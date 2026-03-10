@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page introuvable · Votre Nom</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            var t = localStorage.getItem('kb-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+    <style>
+        :root {
+            --bg: #080c10;
+            --bg2: #0d1219;
+            --surface: #121820;
+            --surface2: #1a2230;
+            --accent: #00d4ff;
+            --accent2: #0099cc;
+            --accent-glow: rgba(0, 212, 255, 0.15);
+            --text: #e8edf2;
+            --text-muted: #6b7f94;
+            --text-dim: #3d5068;
+            --border: rgba(0, 212, 255, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f0f4f8;
+            --bg2: #e2eaf3;
+            --surface: #ffffff;
+            --surface2: #d8e2ee;
+            --accent: #0099cc;
+            --accent2: #007aaa;
+            --accent-glow: rgba(0,153,204,0.12);
+            --text: #0d1a26;
+            --text-muted: #3d5a72;
+            --text-dim: #7a96b0;
+            --border: rgba(0,153,204,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Grid background */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        /* Noise */
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999; opacity: 0.4;
+        }
+
+        /* Glow */
+        .glow-orb {
+            position: fixed;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            animation: orb-pulse 4s ease-in-out infinite;
+        }
+        @keyframes orb-pulse {
+            0%,100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50%      { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+        }
+
+        /* Main card */
+        .card {
+            position: relative; z-index: 10;
+            text-align: center;
+            padding: 4rem 5rem;
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 16px;
+            max-width: 560px; width: 90%;
+            animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        .card::before {
+            content: '';
+            position: absolute; top: 0; left: 10%; right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 404 number */
+        .err-code {
+            font-family: var(--font-display);
+            font-size: clamp(6rem, 20vw, 10rem);
+            line-height: 1;
+            letter-spacing: 0.05em;
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--accent);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 0.25rem;
+            animation: glitch 5s infinite;
+        }
+        .err-code::after {
+            content: '404';
+            position: absolute; inset: 0;
+            color: var(--accent);
+            opacity: 0.12;
+            transform: translate(3px, 3px);
+            font-family: var(--font-display);
+            font-size: inherit;
+            letter-spacing: inherit;
+        }
+        @keyframes glitch {
+            0%,90%,100% { transform: translate(0); filter: none; }
+            92%  { transform: translate(-2px, 1px); filter: hue-rotate(90deg); }
+            94%  { transform: translate(2px, -1px); filter: hue-rotate(-90deg); }
+            96%  { transform: translate(-1px, 2px); filter: none; }
+        }
+
+        /* Tag line */
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+            display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+        }
+        .tag::before, .tag::after {
+            content: '';
+            display: block; width: 30px; height: 1px;
+            background: var(--accent); opacity: 0.5;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2rem; letter-spacing: 0.06em;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        p {
+            font-size: 0.9rem; color: var(--text-muted);
+            line-height: 1.7; margin-bottom: 2.5rem;
+        }
+
+        /* Buttons */
+        .btn-group { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+        .btn-primary {
+            font-family: var(--font-mono); font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 0.85rem 1.75rem;
+            background: var(--accent); color: var(--bg);
+            border: none; border-radius: 5px;
+            text-decoration: none; font-weight: 700;
+            transition: all 0.25s;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+        .btn-primary:hover { background: #33ddff; box-shadow: 0 6px 24px rgba(0,212,255,0.35); transform: translateY(-2px); }
+
+        .btn-secondary {
+            font-family: var(--font-mono); font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 0.85rem 1.75rem;
+            background: transparent; color: var(--text-muted);
+            border: 1px solid var(--border2); border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.25s;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+        .btn-secondary:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-glow); transform: translateY(-2px); }
+
+        /* Status bar */
+        .status {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border2);
+            font-family: var(--font-mono); font-size: 0.62rem;
+            color: var(--text-dim); letter-spacing: 0.1em;
+            display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+        }
+        .status-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); flex-shrink: 0;
+            animation: blink-dot 1.5s ease-in-out infinite;
+        }
+        @keyframes blink-dot { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+        /* Cursor */
+        #c-dot {
+            position: fixed; pointer-events: none; z-index: 999999;
+            width: 5px; height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #c-ring {
+            position: fixed; pointer-events: none; z-index: 999998;
+            width: 36px; height: 36px;
+            border: 1.5px solid var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s cubic-bezier(0.16,1,0.3,1), height 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s;
+            opacity: 0.7;
+        }
+        #c-ring.on-hover { width: 52px; height: 52px; opacity: 1; }
+        #c-ring.gone, #c-dot.gone { opacity: 0; }
+        @media (pointer: coarse) {
+            * { cursor: auto !important; }
+            #c-dot, #c-ring { display: none; }
+        }
+
+        @media (max-width: 500px) {
+            .card { padding: 3rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-orb"></div>
+
+    <div class="card">
+        <div class="err-code">404</div>
+        <div class="tag">Erreur</div>
+        <h1>Page introuvable</h1>
+        <p>Cette page n'existe pas ou a été déplacée.<br>Vérifie l'URL ou retourne à l'accueil.</p>
+        <div class="btn-group">
+            <a href="index.html" class="btn-primary"><i class="fas fa-home"></i> Accueil</a>
+            <a href="javascript:history.back()" class="btn-secondary"><i class="fas fa-arrow-left"></i> Retour</a>
+        </div>
+        <div class="status">
+            <div class="status-dot"></div>
+            <span>ERREUR 404 — RESSOURCE NON TROUVÉE</span>
+        </div>
+    </div>
+
+    <script>
+        /* ── Cursor ── */
+        (function() {
+            if (window.matchMedia('(pointer: coarse)').matches) return;
+            const dot  = document.createElement('div'); dot.id  = 'c-dot';
+            const ring = document.createElement('div'); ring.id = 'c-ring';
+            document.body.appendChild(dot);
+            document.body.appendChild(ring);
+            let mx = -100, my = -100, rx = -100, ry = -100;
+            document.addEventListener('mousemove', function(e) {
+                mx = e.clientX; my = e.clientY;
+                dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+            });
+            (function lerpRing() {
+                rx += (mx - rx) * 0.10; ry += (my - ry) * 0.10;
+                ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+                requestAnimationFrame(lerpRing);
+            })();
+            document.addEventListener('mouseover', function(e) { if (e.target.closest('a, button')) ring.classList.add('on-hover'); });
+            document.addEventListener('mouseout',  function(e) { if (e.target.closest('a, button')) ring.classList.remove('on-hover'); });
+            document.addEventListener('mouseleave', function() { ring.classList.add('gone'); dot.classList.add('gone'); });
+            document.addEventListener('mouseenter', function() { ring.classList.remove('gone'); dot.classList.remove('gone'); });
+        })();
+
+        /* ── Theme ── */
+        (function() {
+            function getTheme() { return localStorage.getItem('kb-theme') || 'dark'; }
+            function setTheme(t) {
+                localStorage.setItem('kb-theme', t);
+                document.documentElement.setAttribute('data-theme', t);
+            }
+            // Sync theme with rest of site
+            setTheme(getTheme());
+        })();
+    </script>
+</body>
+</html>
