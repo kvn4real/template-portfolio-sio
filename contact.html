@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <script>
+        /* ── Theme: apply before paint to avoid flash ── */
+        (function() {
+            var t = localStorage.getItem('kb-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contactez Votre Nom pour une opportunité de stage, d'alternance ou une collaboration. Étudiant BTS SIO SISR disponible en Île-de-France.">
+    <meta name="author" content="Votre Nom">
+    <meta name="keywords" content="Votre Nom, BTS SIO, SISR, portfolio, réseau, cybersécurité, informatique, stage, alternance">
+    <meta property="og:title" content="Contact — Votre Nom">
+    <meta property="og:description" content="Contactez Votre Nom pour une opportunité de stage, d'alternance ou une collaboration. Étudiant BTS SIO SISR disponible en Île-de-France.">
+    <meta property="og:url" content="https://VOTRE_SITE.vercel.app/contact">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Votre Nom — Portfolio">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Contact — Votre Nom">
+    <meta name="twitter:description" content="Contactez Votre Nom pour une opportunité de stage, d'alternance ou une collaboration. Étudiant BTS SIO SISR disponible en Île-de-France.">
+    <title>Contact — Votre Nom Portfolio BTS SIO SISR</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        
+        /* ══════════════════════════════════
+           THEME SYSTEM
+        ══════════════════════════════════ */
+        :root {
+            --bg: #080c10;
+            --bg2: #0d1219;
+            --surface: #121820;
+            --surface2: #1a2230;
+            --accent: #00d4ff;
+            --accent2: #0099cc;
+            --accent-glow: rgba(0, 212, 255, 0.15);
+            --text: #e8edf2;
+            --text-muted: #6b7f94;
+            --text-dim: #3d5068;
+            --border: rgba(0, 212, 255, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f0f4f8;
+            --bg2: #e2eaf3;
+            --surface: #ffffff;
+            --surface2: #d8e2ee;
+            --accent: #0099cc;
+            --accent2: #007aaa;
+            --accent-glow: rgba(0,153,204,0.12);
+            --text: #0d1a26;
+            --text-muted: #3d5a72;
+            --text-dim: #7a96b0;
+            --border: rgba(0,153,204,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+        /* smooth transition on theme switch */
+        html { transition: background 0.35s ease, color 0.35s ease; }
+        body, header, footer, .surface, section { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease; }
+
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 2px; }
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999; opacity: 0.4;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 0 2rem;
+            background: rgba(8,12,16,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border2);
+            height: 64px; display: flex; align-items: center;
+            transition: border-color 0.3s;
+        }
+        nav { width: 100%; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .logo::before { content: '>'; color: var(--text-muted); animation: blink 1.2s step-end infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+        .nav-links a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; padding: 0.5rem 0.85rem; border-radius: 4px; transition: color 0.2s, background 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); background: var(--accent-glow); }
+        .theme-toggle { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); width: 34px; height: 34px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+        .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+        .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .burger span { display: block; width: 22px; height: 2px; background: var(--text-muted); }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            padding: 140px 2rem 80px;
+            position: relative; overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 20% 50%, black 0%, transparent 100%);
+        }
+        .page-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .breadcrumb { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.1em; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.5s 0.1s forwards; }
+        .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--accent); }
+        .page-hero h1 { font-family: var(--font-display); font-size: clamp(4rem, 9vw, 8rem); line-height: 0.92; letter-spacing: 0.02em; color: var(--text); margin-bottom: 1.25rem; opacity: 0; animation: fadeUp 0.6s 0.2s forwards; }
+        .page-hero p { font-size: 1rem; color: var(--text-muted); max-width: 500px; font-weight: 300; line-height: 1.7; opacity: 0; animation: fadeUp 0.6s 0.35s forwards; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+        /* ── SECTION ── */
+        .section { padding: 60px 2rem 100px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* ── GRID ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* ── FORM CARD ── */
+        .form-card {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            padding: 2.5rem;
+            position: relative; overflow: hidden;
+        }
+        .form-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .form-card-title {
+            font-family: var(--font-display);
+            font-size: 2rem; letter-spacing: 0.04em;
+            margin-bottom: 0.4rem;
+        }
+        .form-card-sub {
+            font-family: var(--font-mono); font-size: 0.7rem;
+            color: var(--text-dim); letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+
+        /* ── FORM MESSAGES ── */
+        .form-alert {
+            padding: 0.85rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            letter-spacing: 0.04em;
+        }
+        .form-alert.show { display: flex; animation: fadeUp 0.3s ease; }
+        .form-alert.success { background: rgba(0,255,136,0.06); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
+        .form-alert.error   { background: rgba(255,77,109,0.06); color: var(--red);   border: 1px solid rgba(255,77,109,0.25); }
+
+        /* ── FORM FIELDS ── */
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { margin-bottom: 1.25rem; }
+
+        .form-group label {
+            display: block;
+            font-family: var(--font-mono); font-size: 0.65rem;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--text-muted); margin-bottom: 0.5rem;
+        }
+        .form-group label span { color: var(--text-dim); }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: var(--bg2);
+            border: 1px solid var(--border2);
+            border-radius: 6px;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7f94' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.85rem center;
+            padding-right: 2.5rem;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: var(--text-dim); }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent2);
+            box-shadow: 0 0 0 3px rgba(0,212,255,0.08);
+        }
+        .form-group input.invalid,
+        .form-group textarea.invalid,
+        .form-group select.invalid {
+            border-color: rgba(255,77,109,0.5);
+            box-shadow: 0 0 0 3px rgba(255,77,109,0.06);
+        }
+        .form-group input.valid,
+        .form-group textarea.valid,
+        .form-group select.valid { border-color: rgba(0,255,136,0.3); }
+
+        .field-error {
+            font-family: var(--font-mono); font-size: 0.62rem;
+            color: var(--red); margin-top: 0.35rem;
+            display: none; letter-spacing: 0.04em;
+        }
+        .field-error.show { display: block; }
+
+        .form-group textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+        .char-row { display: flex; justify-content: flex-end; margin-top: 0.3rem; }
+        .char-counter { font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-dim); }
+        .char-counter.warn { color: var(--yellow); }
+        .char-counter.over { color: var(--red); }
+
+        /* ── SUBMIT ── */
+        .submit-btn {
+            width: 100%;
+            padding: 0.9rem 2rem;
+            background: var(--accent);
+            border: none; border-radius: 6px;
+            color: var(--bg);
+            font-family: var(--font-mono); font-size: 0.75rem;
+            font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+            cursor: pointer; transition: all 0.25s;
+            display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+        .submit-btn:hover:not(:disabled) {
+            background: #33ddff;
+            box-shadow: 0 6px 24px rgba(0,212,255,0.35);
+            transform: translateY(-2px);
+        }
+        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        /* ── INFO COLUMN ── */
+        .info-col { display: flex; flex-direction: column; gap: 1.25rem; }
+
+        /* Contact card */
+        .info-card {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: border-color 0.3s;
+        }
+        .info-card:hover { border-color: var(--border); }
+
+        .info-card-title {
+            font-family: var(--font-mono); font-size: 0.65rem;
+            text-transform: uppercase; letter-spacing: 0.15em;
+            color: var(--text-dim); margin-bottom: 1.25rem;
+        }
+
+        .contact-item {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border2);
+        }
+        .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .contact-item:first-of-type { padding-top: 0; }
+
+        .contact-icon {
+            width: 36px; height: 36px; flex-shrink: 0;
+            background: var(--accent-glow);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent); font-size: 0.85rem;
+        }
+        .contact-details h3 {
+            font-family: var(--font-mono); font-size: 0.65rem;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--text-dim); margin-bottom: 0.2rem;
+        }
+        .contact-details p { font-size: 0.875rem; color: var(--text-muted); }
+        .contact-details a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .contact-details a:hover { color: var(--accent); }
+
+        /* Availability card */
+        .avail-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            position: relative; overflow: hidden;
+        }
+        .avail-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(0,212,255,0.06), transparent 60%);
+            pointer-events: none;
+        }
+        .avail-header {
+            display: flex; align-items: center; gap: 0.6rem;
+            margin-bottom: 1.25rem;
+        }
+        .dot-green { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; animation: glow 2s infinite; }
+        @keyframes glow { 0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,0.4)} 50%{box-shadow:0 0 0 6px rgba(0,255,136,0)} }
+        .avail-header span { font-family: var(--font-mono); font-size: 0.7rem; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; }
+        .avail-rows { display: flex; flex-direction: column; gap: 0.6rem; }
+        .avail-row { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--text-muted); }
+        .avail-row i { color: var(--accent); font-size: 0.8rem; margin-top: 0.15rem; flex-shrink: 0; width: 14px; }
+
+        /* Social grid */
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        .social-item {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            background: var(--bg2);
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .social-item:hover { border-color: var(--border); color: var(--accent); background: var(--surface); transform: translateY(-2px); }
+        .social-item i { font-size: 1.1rem; flex-shrink: 0; }
+        .social-item span { font-size: 0.82rem; }
+
+        /* ── FOOTER ── */
+        footer { background: var(--bg); border-top: 1px solid var(--border2); padding: 60px 2rem 30px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 50px; }
+        .footer-brand .logo-big { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.75rem; }
+        .footer-brand p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; max-width: 260px; }
+        .footer-col h4 { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-dim); margin-bottom: 1.25rem; }
+        .footer-col a { display: block; font-size: 0.85rem; color: var(--text-muted); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s, transform 0.2s; }
+        .footer-col a:hover { color: var(--accent); transform: translateX(3px); }
+        .footer-social { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+        .social-btn { width: 38px; height: 38px; background: var(--surface); border: 1px solid var(--border2); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: all 0.2s; }
+        .social-btn:hover { color: var(--accent); border-color: var(--border); background: var(--accent-glow); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; border-top: 1px solid var(--border2); }
+        .footer-bottom p { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.05em; }
+
+        /* ── REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .burger { display: flex; }
+            .form-row { grid-template-columns: 1fr; }
+            .social-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+        }
+    
+        
+        /* Barre de progression en haut */
+
+        
+            #cursor-dot, #cursor-ring { display: none; }
+        }
+
+        /* ══════════════════════════════════
+           SMOOTH SCROLL
+        ══════════════════════════════════ */
+        html { scroll-behavior: auto !important; } /* on gère nous-mêmes */
+
+        
+        /* ══════════════════════════════════
+           CURSOR + VISUAL EFFECTS
+        ══════════════════════════════════ */
+
+        /* Curseur crosshair tech */
+        #cur-cross {
+            position: fixed; pointer-events: none; z-index: 999999;
+            width: 20px; height: 20px;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+        }
+        #cur-cross::before, #cur-cross::after {
+            content: '';
+            position: absolute;
+            background: var(--accent);
+        }
+        #cur-cross::before { width: 1px; height: 100%; left: 50%; top: 0; }
+        #cur-cross::after  { width: 100%; height: 1px; top: 50%; left: 0; }
+        #cur-dot {
+            position: fixed; pointer-events: none; z-index: 999999;
+            width: 4px; height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 6px var(--accent);
+        }
+        #cur-aura {
+            position: fixed; pointer-events: none; z-index: 999997;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0,212,255,0.055) 0%, transparent 70%);
+            transition: transform 0.08s linear;
+        }
+
+        /* Trail canvas */
+        #trail-canvas {
+            position: fixed; inset: 0;
+            pointer-events: none;
+            z-index: 999996;
+            opacity: 0.7;
+        }
+
+        /* Scanlines overlay */
+        #scanlines {
+            position: fixed; inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 3px,
+                rgba(0,0,0,0.06) 3px,
+                rgba(0,0,0,0.06) 4px
+            );
+            animation: scanmove 8s linear infinite;
+        }
+        @keyframes scanmove {
+            0%   { background-position: 0 0; }
+            100% { background-position: 0 100px; }
+        }
+
+        @media (pointer: coarse) {
+            *, *::before, *::after { cursor: auto !important; }
+            #cur-cross, #cur-dot, #cur-aura, #trail-canvas { display: none; }
+        }
+
+        
+        /* ══════════════════════════════════
+           LIQUID CURSOR
+        ══════════════════════════════════ */
+
+        #lc-blob {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999999;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+            transition:
+                width  0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                height 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                border-radius 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                background 0.3s ease,
+                opacity 0.3s ease;
+            filter: blur(0.5px);
+        }
+        #lc-blob.hovering {
+            width: 56px; height: 56px;
+            background: #ffffff;
+            filter: blur(1px);
+        }
+        #lc-blob.clicking {
+            width: 16px; height: 16px;
+            background: var(--accent);
+            filter: blur(0px);
+        }
+        #lc-blob.moving {
+            width: 32px; height: 14px;
+            border-radius: 50%;
+        }
+        #lc-blob.hidden { opacity: 0; }
+
+        @media (pointer: coarse) {
+            * { cursor: auto !important; }
+            #lc-blob { display: none; }
+        }
+
+        
+        /* ══════════════════════════════════
+           CURSOR
+        ══════════════════════════════════ */
+        * { cursor: none !important; }
+
+        #c-dot {
+            position: fixed; pointer-events: none; z-index: 999999;
+            width: 5px; height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s, background 0.2s;
+        }
+        #c-ring {
+            position: fixed; pointer-events: none; z-index: 999998;
+            width: 36px; height: 36px;
+            border: 1.5px solid var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition:
+                width  0.4s cubic-bezier(0.16,1,0.3,1),
+                height 0.4s cubic-bezier(0.16,1,0.3,1),
+                border-color 0.3s,
+                opacity 0.3s;
+            opacity: 0.7;
+        }
+        #c-ring.on-hover {
+            width: 52px; height: 52px;
+            border-color: #ffffff;
+            opacity: 1;
+        }
+        #c-ring.on-click {
+            width: 24px; height: 24px;
+            border-color: var(--accent);
+            opacity: 1;
+        }
+        #c-dot.on-hover { transform: translate(-50%, -50%) scale(0); }
+        #c-dot.on-click { transform: translate(-50%, -50%) scale(2.5); background: var(--accent); }
+        #c-ring.gone, #c-dot.gone { opacity: 0; }
+
+        @media (pointer: coarse) {
+            * { cursor: auto !important; }
+            #c-dot, #c-ring { display: none; }
+        }
+
+        </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <nav>
+            <a href="index.html" class="logo">Votre Nom</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="projets.html">Projets</a></li>
+                <li><a href="realisations.html">Réalisations</a></li>
+                <li><a href="veille.html">Veille</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button></li>
+            </ul>
+            <div class="burger" id="burger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a>
+                <span>/</span>
+                <span>Contact</span>
+            </div>
+            <h1>Me<br>Contacter</h1>
+            <p>Disponible pour toute opportunité de stage, d'alternance ou collaboration. Je réponds généralement sous 24h.</p>
+        </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-grid reveal">
+
+                <!-- FORMULAIRE -->
+                <div class="form-card">
+                    <h2 class="form-card-title">Envoyer un message</h2>
+                    <p class="form-card-sub">// Réponse sous 24h garantie</p>
+
+                    <div class="form-alert success" id="successAlert">
+                        <i class="fas fa-check-circle"></i>
+                        Message envoyé avec succès ! Je vous répondrai très rapidement.
+                    </div>
+                    <div class="form-alert error" id="errorAlert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Erreur d'envoi. Contactez-moi directement : <script>document.write(["votre.email","gmail.com"].join("&#64;"))</script>
+                    </div>
+
+                    <form id="contactForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nom complet *</label>
+                                <input type="text" id="name" name="name" placeholder="Jean Dupont" autocomplete="name">
+                                <div class="field-error" id="name-err">Minimum 2 caractères requis.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Adresse email *</label>
+                                <input type="email" id="email" name="email" placeholder="jean@exemple.com" autocomplete="email">
+                                <div class="field-error" id="email-err">Email invalide.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="subject">Sujet *</label>
+                                <select id="subject" name="subject">
+                                    <option value="">Choisir un sujet…</option>
+                                    <option value="Opportunité de stage">Opportunité de stage</option>
+                                    <option value="Proposition d'alternance">Proposition d'alternance</option>
+                                    <option value="Collaboration sur un projet">Collaboration</option>
+                                    <option value="Demande de conseil">Demande de conseil</option>
+                                    <option value="Autre">Autre</option>
+                                </select>
+                                <div class="field-error" id="subject-err">Veuillez choisir un sujet.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Entreprise <span>(optionnel)</span></label>
+                                <input type="text" id="company" name="company" placeholder="Nom de votre entreprise" autocomplete="organization">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Décrivez votre demande, projet ou question…" maxlength="1000"></textarea>
+                            <div class="char-row">
+                                <span class="char-counter" id="charCounter">0 / 1000</span>
+                            </div>
+                            <div class="field-error" id="message-err">Minimum 10 caractères requis.</div>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i>
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- INFOS -->
+                <div class="info-col">
+
+                    <!-- Coordonnées -->
+                    <div class="info-card reveal">
+                        <p class="info-card-title">// Coordonnées</p>
+
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-details">
+                                <h3>Email</h3><p><a href="javascript:void(0)" onclick="window.location.href='mailto:'+['votre.email','gmail.com'].join('@')"><script>document.write(["votre.email","gmail.com"].join("&#64;"))</script></a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="contact-details">
+                                <h3>Localisation</h3>
+                                <p>VOTRE_VILLE (XX) — Mobilité Île-de-France</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                            <div class="contact-details">
+                                <h3>Disponibilité</h3>
+                                <p>Lun — Ven · 9h – 18h · Réponse sous 24h</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Disponibilité -->
+                    <div class="avail-card reveal">
+                        <div class="avail-header">
+                            <div class="dot-green"></div>
+                            <span>Statut — Disponible</span>
+                        </div>
+                        <div class="avail-rows">
+                            <div class="avail-row"><i class="fas fa-graduation-cap"></i><span>Étudiant BTS SIO SISR — VOTRE_LYCEE</span></div>
+                            <div class="avail-row"><i class="fas fa-calendar-alt"></i><span>Fin de formation prévue en Juin 2026</span></div>
+                            <div class="avail-row"><i class="fas fa-briefcase"></i><span>Ouvert aux opportunités d'alternance & stage pour 2026</span></div>
+                            <div class="avail-row"><i class="fas fa-map-marker-alt"></i><span>Disponible en Île-de-France</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Réseaux -->
+                    <div class="info-card reveal">
+                        <p class="info-card-title">// Retrouvez-moi sur</p>
+                        <div class="social-grid">
+                            <a href="https://www.linkedin.com/in/VOTRE_PROFIL" target="_blank" class="social-item">
+                                <i class="fab fa-linkedin" style="color:#0a8fd1"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/VOTRE_GITHUB" target="_blank" class="social-item">
+                                <i class="fab fa-github" style="color:#aaa"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="javascript:void(0)" onclick="window.location.href='mailto:'+['votre.email','gmail.com'].join('@')" class="social-item"><i class="fas fa-envelope" style="color:var(--accent)"></i><span>Email direct</span></a>
+                            <a href="CV_Votre Nom.pdf" download class="social-item">
+                                <i class="fas fa-file-pdf" style="color:#ff4444"></i>
+                                <span>Télécharger CV</span>
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo-big">Votre Nom</div>
+                    <p>Étudiant BTS SIO SISR, passionné par les systèmes, réseaux et la cybersécurité. Disponible pour alternance en 2026.</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/VOTRE_PROFIL" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/VOTRE_GITHUB" class="social-btn"><i class="fab fa-github"></i></a>
+                        <a href="javascript:void(0)" onclick="window.location.href='mailto:'+['votre.email','gmail.com'].join('@')" class="social-btn"><i class="fas fa-envelope"></i></a>
+
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="index.html">Accueil</a>
+                    <a href="projets.html">Projets</a>
+                    <a href="realisations.html">Réalisations</a>
+                    <a href="veille.html">Veille</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Compétences</h4>
+                    <a href="realisations.html#systeme">Admin. Système</a>
+                    <a href="realisations.html#reseau">Admin. Réseau</a>
+                    <a href="realisations.html#dev">Développement</a>
+                    <a href="realisations.html#virtualisation">Virtualisation</a>
+                    <a href="realisations.html#support">Support IT</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <a href="https://www.linkedin.com/in/VOTRE_PROFIL">LinkedIn</a>
+                    <a href="https://github.com/VOTRE_GITHUB">GitHub</a>
+                    <a href="contact.html">Formulaire</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Votre Nom — Portfolio BTS SIO SISR</p>
+                <p>Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        // ─────────────────────────────────────────
+        // EMAILJS CONFIG — tes identifiants
+        // ─────────────────────────────────────────
+        const EJS_PUBLIC_KEY  = 'VOTRE_PUBLIC_KEY';
+        const EJS_SERVICE_ID  = 'VOTRE_SERVICE_ID';
+        const EJS_TEMPLATE_ID = 'VOTRE_TEMPLATE_ID';
+
+        emailjs.init(EJS_PUBLIC_KEY);
+
+        // ─────────────────────────────────────────
+        // HELPERS
+        // ─────────────────────────────────────────
+        function getEl(id) { return document.getElementById(id); }
+
+        function setFieldState(inputId, errId, valid, msg) {
+            const input = getEl(inputId);
+            const err   = getEl(errId);
+            input.classList.toggle('valid',   valid);
+            input.classList.toggle('invalid', !valid);
+            if (!valid && msg) {
+                err.textContent = msg;
+                err.classList.add('show');
+            } else {
+                err.classList.remove('show');
+            }
+            return valid;
+        }
+
+        function clearFieldState(inputId, errId) {
+            const input = getEl(inputId);
+            const err   = getEl(errId);
+            input.classList.remove('valid', 'invalid');
+            err.classList.remove('show');
+        }
+
+        // ─────────────────────────────────────────
+        // VALIDATIONS
+        // ─────────────────────────────────────────
+        const validators = {
+            name:    v => v.trim().length >= 2,
+            email:   v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+            subject: v => v !== '',
+            message: v => v.trim().length >= 10,
+        };
+        const errors = {
+            name:    'Minimum 2 caractères requis.',
+            email:   'Adresse email invalide.',
+            subject: 'Veuillez choisir un sujet.',
+            message: 'Minimum 10 caractères requis.',
+        };
+
+        function validateField(id) {
+            const el = getEl(id);
+            const ok = validators[id](el.value);
+            return setFieldState(id, `${id}-err`, ok, ok ? null : errors[id]);
+        }
+
+        function validateAll() {
+            return ['name', 'email', 'subject', 'message'].map(id => validateField(id)).every(Boolean);
+        }
+
+        // Live validation on blur
+        ['name', 'email', 'subject', 'message'].forEach(id => {
+            const el = getEl(id);
+            el.addEventListener('blur', () => {
+                if (el.value !== '') validateField(id);
+            });
+            el.addEventListener('input', () => {
+                if (el.classList.contains('invalid')) validateField(id);
+                if (el.classList.contains('valid'))   validateField(id);
+            });
+        });
+
+        // ─────────────────────────────────────────
+        // CHAR COUNTER
+        // ─────────────────────────────────────────
+        const msgField   = getEl('message');
+        const charCount  = getEl('charCounter');
+        msgField.addEventListener('input', () => {
+            const len = msgField.value.length;
+            charCount.textContent = `${len} / 1000`;
+            charCount.className = 'char-counter' + (len > 900 ? ' over' : len > 750 ? ' warn' : '');
+        });
+
+        // ─────────────────────────────────────────
+        // SUBMIT
+        // ─────────────────────────────────────────
+        const form       = getEl('contactForm');
+        const submitBtn  = getEl('submitBtn');
+        const successAlert = getEl('successAlert');
+        const errorAlert   = getEl('errorAlert');
+
+        function showAlert(type) {
+            successAlert.classList.remove('show');
+            errorAlert.classList.remove('show');
+            if (type) getEl(`${type}Alert`).classList.add('show');
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            showAlert(null);
+
+            if (!validateAll()) {
+                // Scroll to first error
+                const firstErr = form.querySelector('.invalid');
+                if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours…';
+
+            const params = {
+                from_name:  getEl('name').value.trim(),
+                from_email: getEl('email').value.trim(),
+                subject:    getEl('subject').value,
+                company:    getEl('company').value.trim() || 'Non renseigné',
+                message:    getEl('message').value.trim(),
+                reply_to:   getEl('email').value.trim(),
+            };
+
+            try {
+                const response = await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, params);
+                if (response.status === 200) {
+                    showAlert('success');
+                    form.reset();
+                    charCount.textContent = '0 / 1000';
+                    charCount.className = 'char-counter';
+                    // Clear validation states
+                    ['name','email','subject','message'].forEach(id => clearFieldState(id, `${id}-err`));
+                    // Auto-hide after 8s
+                    setTimeout(() => showAlert(null), 8000);
+                } else {
+                    throw new Error(`Status ${response.status}`);
+                }
+            } catch (err) {
+                console.error('EmailJS error:', err);
+                showAlert('error');
+                setTimeout(() => showAlert(null), 10000);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
+            }
+        });
+
+        // ─────────────────────────────────────────
+        // MISC
+        // ─────────────────────────────────────────
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Burger
+        const burger = document.getElementById('burger');
+        const navLinks = document.querySelector('.nav-links');
+        burger.addEventListener('click', () => {
+            const open = navLinks.style.display === 'flex';
+            navLinks.style.display = open ? 'none' : 'flex';
+            if (!open) Object.assign(navLinks.style, {
+                    flexDirection:'column', position:'absolute',
+                    top:'64px', left:'0', right:'0',
+                    background: document.documentElement.getAttribute('data-theme') === 'light'
+                        ? 'rgba(240,244,248,0.97)'
+                        : 'rgba(8,12,16,0.97)',
+                    padding:'1rem 2rem',
+                    borderBottom:'1px solid var(--border2)'
+                });
+        });
+
+        // Header border on scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').style.borderBottomColor =
+                window.scrollY > 50 ? 'rgba(0,212,255,0.15)' : 'rgba(255,255,255,0.06)';
+        });
+
+    </script>
+
+    
+
+
+    
+
+
+    
+
+
+    <script>
+        /* ── Cursor: dot + lagging ring ── */
+        (function() {
+            if (window.matchMedia('(pointer: coarse)').matches) return;
+
+            const dot  = document.createElement('div'); dot.id  = 'c-dot';
+            const ring = document.createElement('div'); ring.id = 'c-ring';
+            document.body.appendChild(dot);
+            document.body.appendChild(ring);
+
+            let mx = -100, my = -100;
+            let rx = -100, ry = -100;
+
+            // Dot follows instantly
+            document.addEventListener('mousemove', function(e) {
+                mx = e.clientX; my = e.clientY;
+                dot.style.left = mx + 'px';
+                dot.style.top  = my + 'px';
+            });
+
+            // Ring lags behind with lerp
+            (function lerpRing() {
+                rx += (mx - rx) * 0.10;
+                ry += (my - ry) * 0.10;
+                ring.style.left = rx + 'px';
+                ring.style.top  = ry + 'px';
+                requestAnimationFrame(lerpRing);
+            })();
+
+            // Hover
+            const sel = 'a, button, input, textarea, select, [onclick], label';
+            document.addEventListener('mouseover', function(e) {
+                if (e.target.closest(sel)) {
+                    ring.classList.add('on-hover');
+                    dot.classList.add('on-hover');
+                }
+            });
+            document.addEventListener('mouseout', function(e) {
+                if (e.target.closest(sel)) {
+                    ring.classList.remove('on-hover');
+                    dot.classList.remove('on-hover');
+                }
+            });
+
+            // Click
+            document.addEventListener('mousedown', function() {
+                ring.classList.remove('on-hover');
+                ring.classList.add('on-click');
+                dot.classList.remove('on-hover');
+                dot.classList.add('on-click');
+            });
+            document.addEventListener('mouseup', function() {
+                ring.classList.remove('on-click');
+                dot.classList.remove('on-click');
+            });
+
+            // Hide outside window
+            document.addEventListener('mouseleave', function() { ring.classList.add('gone'); dot.classList.add('gone'); });
+            document.addEventListener('mouseenter', function() { ring.classList.remove('gone'); dot.classList.remove('gone'); });
+        })();
+    </script>
+
+</body>
+</html>
