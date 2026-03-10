@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <script>
+        /* ── Theme: apply before paint to avoid flash ── */
+        (function() {
+            var t = localStorage.getItem('kb-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mes projets techniques : VPN IPsec, NextCloud, Windows Server 2022, Apache. Réalisés dans le cadre du BTS SIO SISR.">
+    <meta name="author" content="Votre Nom">
+    <meta name="keywords" content="Votre Nom, BTS SIO, SISR, portfolio, réseau, cybersécurité, informatique, stage, alternance">
+    <meta property="og:title" content="Projets — Votre Nom">
+    <meta property="og:description" content="Mes projets techniques : VPN IPsec, NextCloud, Windows Server 2022, Apache. Réalisés dans le cadre du BTS SIO SISR.">
+    <meta property="og:url" content="https://VOTRE_SITE.vercel.app/projets">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Votre Nom — Portfolio">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Projets — Votre Nom">
+    <meta name="twitter:description" content="Mes projets techniques : VPN IPsec, NextCloud, Windows Server 2022, Apache. Réalisés dans le cadre du BTS SIO SISR.">
+    <title>Projets — Votre Nom Portfolio BTS SIO SISR</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        
+        /* ══════════════════════════════════
+           THEME SYSTEM
+        ══════════════════════════════════ */
+        :root {
+            --bg: #080c10;
+            --bg2: #0d1219;
+            --surface: #121820;
+            --surface2: #1a2230;
+            --accent: #00d4ff;
+            --accent2: #0099cc;
+            --accent-glow: rgba(0, 212, 255, 0.15);
+            --text: #e8edf2;
+            --text-muted: #6b7f94;
+            --text-dim: #3d5068;
+            --border: rgba(0, 212, 255, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f0f4f8;
+            --bg2: #e2eaf3;
+            --surface: #ffffff;
+            --surface2: #d8e2ee;
+            --accent: #0099cc;
+            --accent2: #007aaa;
+            --accent-glow: rgba(0,153,204,0.12);
+            --text: #0d1a26;
+            --text-muted: #3d5a72;
+            --text-dim: #7a96b0;
+            --border: rgba(0,153,204,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+        /* smooth transition on theme switch */
+        html { transition: background 0.35s ease, color 0.35s ease; }
+        body, header, footer, .surface, section { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease; }
+
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 2px; }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999; opacity: 0.4;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 0 2rem;
+            background: rgba(8,12,16,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border2);
+            height: 64px;
+            display: flex; align-items: center;
+            transition: border-color 0.3s;
+        }
+
+        nav {
+            width: 100%; max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            display: flex; align-items: center; gap: 0.5rem;
+            text-decoration: none;
+        }
+        .logo::before {
+            content: '>';
+            color: var(--text-muted);
+            animation: blink 1.2s step-end infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        .nav-links {
+            display: flex; align-items: center; gap: 0.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.5rem 0.85rem;
+            border-radius: 4px;
+            transition: color 0.2s, background 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .theme-toggle {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            width: 34px; height: 34px;
+            border-radius: 6px; cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+        .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .burger span { display: block; width: 22px; height: 2px; background: var(--text-muted); transition: all 0.3s; }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            padding: 140px 2rem 80px;
+            position: relative; overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 20% 50%, black 0%, transparent 100%);
+        }
+
+        .page-hero-inner {
+            max-width: 1200px; margin: 0 auto;
+            position: relative; z-index: 1;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            display: flex; align-items: center; gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0; animation: fadeUp 0.5s 0.1s forwards;
+        }
+        .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--accent); }
+        .breadcrumb span { color: var(--text-dim); }
+
+        .page-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 9vw, 8rem);
+            line-height: 0.92;
+            letter-spacing: 0.02em;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+        }
+
+        .page-hero p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            font-weight: 300;
+            line-height: 1.7;
+            opacity: 0; animation: fadeUp 0.6s 0.35s forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+        /* ── MAIN SECTION ── */
+        .section { padding: 60px 2rem 100px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* ── FILTERS ── */
+        .filters {
+            display: flex; gap: 0.5rem; flex-wrap: wrap;
+            margin-bottom: 3rem;
+            opacity: 0; animation: fadeUp 0.6s 0.45s forwards;
+        }
+
+        .filter-btn {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.55rem 1.1rem;
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 4px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover { color: var(--accent); border-color: var(--border); }
+        .filter-btn.active {
+            background: var(--accent-glow);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ── PROJECT GRID ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            display: flex; flex-direction: column;
+        }
+        .project-card:hover {
+            border-color: rgba(0,212,255,0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        /* Top accent line */
+        .project-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+        .project-card:hover::before { transform: scaleX(1); }
+
+        .project-image {
+            height: 180px;
+            background: var(--surface2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.75rem;
+            color: var(--text-dim);
+            position: relative; overflow: hidden;
+            transition: color 0.3s;
+        }
+        .project-image::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 50% 50%, var(--accent-glow), transparent 70%);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .project-card:hover .project-image { color: var(--accent); }
+        .project-card:hover .project-image::after { opacity: 1; }
+
+        .project-status {
+            position: absolute; top: 1rem; right: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border-radius: 3px;
+            z-index: 1;
+        }
+        .status-completed { background: rgba(0,255,136,0.08); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
+        .status-progress  { background: rgba(255,193,7,0.08);  color: var(--yellow); border: 1px solid rgba(255,193,7,0.25); }
+        .status-planned   { background: rgba(108,117,125,0.08);color: var(--grey); border: 1px solid rgba(108,117,125,0.25); }
+
+        .project-info {
+            padding: 1.5rem;
+            flex: 1; display: flex; flex-direction: column;
+        }
+
+        .project-meta {
+            display: flex; gap: 0.4rem; flex-wrap: wrap;
+            margin-bottom: 0.85rem;
+        }
+
+        .project-tag {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+            background: var(--accent-glow);
+            color: var(--accent);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+        }
+
+        .project-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.6rem;
+            color: var(--text);
+        }
+
+        .project-info p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .project-tech {
+            display: flex; gap: 0.4rem; flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-badge {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            padding: 0.25rem 0.6rem;
+            background: var(--bg2);
+            border: 1px solid var(--border2);
+            border-radius: 3px;
+            color: var(--text-dim);
+            transition: all 0.2s;
+        }
+        .project-card:hover .tech-badge { border-color: var(--border); color: var(--text-muted); }
+
+        .project-links {
+            display: flex; gap: 0.75rem;
+        }
+
+        .project-link {
+            flex: 1; text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.7rem;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .project-link.primary {
+            background: var(--accent);
+            color: var(--bg);
+            font-weight: 700;
+        }
+        .project-link.primary:hover {
+            background: #33ddff;
+            box-shadow: 0 4px 20px rgba(0,212,255,0.3);
+        }
+        .project-link.secondary {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border2);
+        }
+        .project-link.secondary:hover {
+            color: var(--accent);
+            border-color: var(--border);
+            background: var(--accent-glow);
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            background: var(--bg2);
+            padding: 100px 2rem;
+            border-top: 1px solid var(--border2);
+        }
+        .cta-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr auto;
+            gap: 2rem; align-items: center;
+        }
+        .cta-inner h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.75rem;
+        }
+        .cta-inner p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            line-height: 1.7;
+        }
+        .cta-buttons {
+            display: flex; flex-direction: column; gap: 0.75rem;
+        }
+        .btn {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.85rem 1.75rem;
+            border-radius: 4px;
+            transition: all 0.25s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+            white-space: nowrap;
+        }
+        .btn-primary { background: var(--accent); color: var(--bg); font-weight: 700; }
+        .btn-primary:hover { background: #33ddff; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,255,0.3); }
+        .btn-secondary { background: transparent; color: var(--text-muted); border: 1px solid var(--border2); }
+        .btn-secondary:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-glow); transform: translateY(-2px); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--bg);
+            border-top: 1px solid var(--border2);
+            padding: 60px 2rem 30px;
+        }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 50px;
+        }
+        .footer-brand .logo-big {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            letter-spacing: 0.05em;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+        .footer-brand p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 260px;
+        }
+        .footer-col h4 {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-dim);
+            margin-bottom: 1.25rem;
+        }
+        .footer-col a {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .footer-col a:hover { color: var(--accent); transform: translateX(3px); }
+        .footer-social { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+        .social-btn {
+            width: 38px; height: 38px;
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .social-btn:hover { color: var(--accent); border-color: var(--border); background: var(--accent-glow); }
+        .footer-bottom {
+            display: flex; align-items: center; justify-content: space-between;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border2);
+        }
+        .footer-bottom p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 0.05em;
+        }
+
+        /* ── MODAL ── */
+        .modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.open { display: flex; }
+
+        .modal-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 640px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            position: relative;
+            animation: modalIn 0.25s ease forwards;
+        }
+        ::-webkit-scrollbar { width: 4px; }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-close {
+            position: absolute; top: 1.25rem; right: 1.25rem;
+            width: 32px; height: 32px;
+            background: var(--surface2); border: 1px solid var(--border2);
+            border-radius: 50%; color: var(--text-muted);
+            cursor: pointer; font-size: 0.8rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .modal-close:hover { background: rgba(255,60,60,0.1); color: #ff4444; border-color: rgba(255,60,60,0.3); }
+
+        .modal-header {
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border2);
+        }
+        .modal-header h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.75rem;
+        }
+        .modal-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+        .modal-section { margin-bottom: 1.5rem; }
+        .modal-section h4 {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+        }
+        .modal-section p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.75;
+        }
+        .modal-tech { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+        .modal-objectives { list-style: none; }
+        .modal-objectives li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1.25rem;
+            position: relative;
+            line-height: 1.6;
+        }
+        .modal-objectives li::before {
+            content: '▹';
+            position: absolute; left: 0;
+            color: var(--accent);
+        }
+
+        .modal-status-row { display: flex; align-items: center; gap: 0.75rem; }
+
+        /* ── REVEAL ── */
+        .reveal {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── MOBILE ── */
+        @media (max-width: 900px) {
+            .cta-inner { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: row; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .burger { display: flex; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+            .cta-buttons { flex-direction: column; }
+        }
+    
+        
+        /* Barre de progression en haut */
+
+        /* ── PDF Download toast ── */
+        #doc-toast {
+            position: fixed; bottom: 2rem; left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.85rem 1.5rem;
+            font-family: var(--font-mono); font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            display: flex; align-items: center; gap: 0.75rem;
+            z-index: 9998;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            white-space: nowrap;
+        }
+        #doc-toast.show {
+            opacity: 1; pointer-events: none;
+            transform: translateX(-50%) translateY(0);
+        }
+        #doc-toast.success { border-color: rgba(0,255,136,0.3); color: #00ff88; }
+        #doc-toast.pending { border-color: rgba(255,193,7,0.3); color: #ffc107; }
+        #doc-toast i { font-size: 1rem; }
+
+        
+        
+            #cursor-dot, #cursor-ring { display: none; }
+        }
+
+        /* ══════════════════════════════════
+           SMOOTH SCROLL
+        ══════════════════════════════════ */
+        html { scroll-behavior: auto !important; } /* on gère nous-mêmes */
+
+        
+        /* ══════════════════════════════════
+           CURSOR + VISUAL EFFECTS
+        ══════════════════════════════════ */
+
+        /* Curseur crosshair tech */
+        #cur-cross {
+            position: fixed; pointer-events: none; z-index: 999999;
+            width: 20px; height: 20px;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+        }
+        #cur-cross::before, #cur-cross::after {
+            content: '';
+            position: absolute;
+            background: var(--accent);
+        }
+        #cur-cross::before { width: 1px; height: 100%; left: 50%; top: 0; }
+        #cur-cross::after  { width: 100%; height: 1px; top: 50%; left: 0; }
+        #cur-dot {
+            position: fixed; pointer-events: none; z-index: 999999;
+            width: 4px; height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 6px var(--accent);
+        }
+        #cur-aura {
+            position: fixed; pointer-events: none; z-index: 999997;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0,212,255,0.055) 0%, transparent 70%);
+            transition: transform 0.08s linear;
+        }
+
+        /* Trail canvas */
+        #trail-canvas {
+            position: fixed; inset: 0;
+            pointer-events: none;
+            z-index: 999996;
+            opacity: 0.7;
+        }
+
+        /* Scanlines overlay */
+        #scanlines {
+            position: fixed; inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 3px,
+                rgba(0,0,0,0.06) 3px,
+                rgba(0,0,0,0.06) 4px
+            );
+            animation: scanmove 8s linear infinite;
+        }
+        @keyframes scanmove {
+            0%   { background-position: 0 0; }
+            100% { background-position: 0 100px; }
+        }
+
+        @media (pointer: coarse) {
+            *, *::before, *::after { cursor: auto !important; }
+            #cur-cross, #cur-dot, #cur-aura, #trail-canvas { display: none; }
+        }
+
+        
+        /* ══════════════════════════════════
+           LIQUID CURSOR
+        ══════════════════════════════════ */
+
+        #lc-blob {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999999;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+            transition:
+                width  0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                height 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                border-radius 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                background 0.3s ease,
+                opacity 0.3s ease;
+            filter: blur(0.5px);
+        }
+        #lc-blob.hovering {
+            width: 56px; height: 56px;
+            background: #ffffff;
+            filter: blur(1px);
+        }
+        #lc-blob.clicking {
+            width: 16px; height: 16px;
+            background: var(--accent);
+            filter: blur(0px);
+        }
+        #lc-blob.moving {
+            width: 32px; height: 14px;
+            border-radius: 50%;
+        }
+        #lc-blob.hidden { opacity: 0; }
+
+        @media (pointer: coarse) {
+            * { cursor: auto !important; }
+            #lc-blob { display: none; }
+        }
+
+        
+        /* ══════════════════════════════════
+           CURSOR
+        ══════════════════════════════════ */
+        * { cursor: none !important; }
+
+        #c-dot {
+            position: fixed; pointer-events: none; z-index: 999999;
+            width: 5px; height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s, background 0.2s;
+        }
+        #c-ring {
+            position: fixed; pointer-events: none; z-index: 999998;
+            width: 36px; height: 36px;
+            border: 1.5px solid var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition:
+                width  0.4s cubic-bezier(0.16,1,0.3,1),
+                height 0.4s cubic-bezier(0.16,1,0.3,1),
+                border-color 0.3s,
+                opacity 0.3s;
+            opacity: 0.7;
+        }
+        #c-ring.on-hover {
+            width: 52px; height: 52px;
+            border-color: #ffffff;
+            opacity: 1;
+        }
+        #c-ring.on-click {
+            width: 24px; height: 24px;
+            border-color: var(--accent);
+            opacity: 1;
+        }
+        #c-dot.on-hover { transform: translate(-50%, -50%) scale(0); }
+        #c-dot.on-click { transform: translate(-50%, -50%) scale(2.5); background: var(--accent); }
+        #c-ring.gone, #c-dot.gone { opacity: 0; }
+
+        @media (pointer: coarse) {
+            * { cursor: auto !important; }
+            #c-dot, #c-ring { display: none; }
+        }
+
+        </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <nav>
+            <a href="index.html" class="logo">Votre Nom</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="projets.html" class="active">Projets</a></li>
+                <li><a href="realisations.html">Réalisations</a></li>
+                <li><a href="veille.html">Veille</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button></li>
+            </ul>
+            <div class="burger" id="burger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a>
+                <span>/</span>
+                <span>Projets</span>
+            </div>
+            <h1>Mes<br>Projets</h1>
+            <p>Découvrez les projets réalisés durant ma formation BTS SIO SISR, de l'administration système à la cybersécurité.</p>
+        </div>
+    </div>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section">
+        <div class="container">
+
+            <div class="filters reveal">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="reseau">Réseau</button>
+                <button class="filter-btn" data-filter="systeme">Système</button>
+                <button class="filter-btn" data-filter="securite">Sécurité</button>
+                <button class="filter-btn" data-filter="cloud">Cloud</button>
+                <button class="filter-btn" data-filter="dev">Développement</button>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- Portfolio -->
+                <div class="project-card dev reveal">
+                    <div class="project-status status-completed">Terminé</div>
+                    <div class="project-image"><i class="fas fa-laptop-code"></i></div>
+                    <div class="project-info">
+                        <div class="project-meta">
+                            <span class="project-tag">Développement</span>
+                        </div>
+                        <h3>Portfolio BTS SIO</h3>
+                        <p>Conception et déploiement d'un portfolio web pour l'épreuve E4 du BTS SIO SISR, hébergé sur Vercel.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">HTML / CSS</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">VS Code</span>
+                            <span class="tech-badge">GitHub</span>
+                            <span class="tech-badge">Vercel</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="project-link primary" onclick="openModal('modal-portfolio')">Voir détails</button>
+                            <a href="https://github.com/VOTRE_GITHUB" target="_blank" class="project-link secondary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VPN -->
+                <div class="project-card reseau securite reveal">
+                    <div class="project-status status-completed">Terminé</div>
+                    <div class="project-image"><i class="fas fa-shield-alt"></i></div>
+                    <div class="project-info">
+                        <div class="project-meta">
+                            <span class="project-tag">Réseau</span>
+                            <span class="project-tag">Sécurité</span>
+                        </div>
+                        <h3>VPN IPsec / Stormshield</h3>
+                        <p>Mise en place d'un tunnel VPN IPsec via un pare-feu Stormshield SNS en environnement virtualisé.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Stormshield SNS</span>
+                            <span class="tech-badge">VirtualBox</span>
+                            <span class="tech-badge">IPsec</span>
+                            <span class="tech-badge">OpenVPN</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="project-link primary" onclick="openModal('modal-vpn')">Voir détails</button>
+                            <a href="doc_vpn_ipsec.pdf" download class="project-link secondary doc-dl" data-name="VPN IPsec"><i class="fas fa-file-pdf"></i> Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NextCloud -->
+                <div class="project-card cloud systeme reveal">
+                    <div class="project-status status-progress">En cours</div>
+                    <div class="project-image"><i class="fas fa-cloud"></i></div>
+                    <div class="project-info">
+                        <div class="project-meta">
+                            <span class="project-tag">Cloud</span>
+                            <span class="project-tag">Système</span>
+                        </div>
+                        <h3>NextCloud</h3>
+                        <p>Déploiement d'une instance NextCloud sur serveur Linux pour le stockage et le partage de fichiers en interne.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">NextCloud</span>
+                            <span class="tech-badge">Linux (Debian)</span>
+                            <span class="tech-badge">Apache</span>
+                            <span class="tech-badge">MariaDB</span>
+                            <span class="tech-badge">PHP</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="project-link primary" onclick="openModal('modal-nextcloud')">Voir détails</button>
+                            <a href="doc_nextcloud.pdf" download class="project-link secondary doc-dl" data-name="NextCloud"><i class="fas fa-file-pdf"></i> Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Windows Server -->
+                <div class="project-card systeme reveal">
+                    <div class="project-status status-completed">Terminé</div>
+                    <div class="project-image"><i class="fas fa-server"></i></div>
+                    <div class="project-info">
+                        <div class="project-meta">
+                            <span class="project-tag">Système</span>
+                        </div>
+                        <h3>Windows Server 2022</h3>
+                        <p>Installation et configuration d'un serveur Windows Server 2022 avec Active Directory, DNS, DHCP et gestion des GPO.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Windows Server 2022</span>
+                            <span class="tech-badge">Active Directory</span>
+                            <span class="tech-badge">GPO</span>
+                            <span class="tech-badge">DNS / DHCP</span>
+                            <span class="tech-badge">PowerShell</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="project-link primary" onclick="openModal('modal-wserver')">Voir détails</button>
+                            <a href="doc_windows_server.pdf" download class="project-link secondary doc-dl" data-name="Windows Server 2022"><i class="fas fa-file-pdf"></i> Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Apache -->
+                <div class="project-card reseau systeme reveal">
+                    <div class="project-status status-completed">Terminé</div>
+                    <div class="project-image"><i class="fas fa-globe"></i></div>
+                    <div class="project-info">
+                        <div class="project-meta">
+                            <span class="project-tag">Réseau</span>
+                            <span class="project-tag">Système</span>
+                        </div>
+                        <h3>Serveur Web Apache</h3>
+                        <p>Configuration d'un serveur web Apache sur Linux avec gestion du DNS, certificat SSL et hébergement de pages HTML.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Linux (Debian)</span>
+                            <span class="tech-badge">Apache</span>
+                            <span class="tech-badge">SSL / HTTPS</span>
+                            <span class="tech-badge">DNS</span>
+                            <span class="tech-badge">HTML</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="project-link primary" onclick="openModal('modal-apache')">Voir détails</button>
+                            <a href="doc_apache.pdf" download class="project-link secondary doc-dl" data-name="Apache"><i class="fas fa-file-pdf"></i> Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-inner reveal">
+            <div>
+                <h2>Intéressé par mes projets ?</h2>
+                <p>N'hésitez pas à me contacter pour discuter de mes réalisations ou pour toute collaboration.</p>
+            </div>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Me contacter</a>
+                <a href="realisations.html" class="btn btn-secondary"><i class="fas fa-trophy"></i> Mes compétences</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo-big">Votre Nom</div>
+                    <p>Étudiant BTS SIO SISR, passionné par les systèmes, réseaux et la cybersécurité. Disponible pour alternance en 2026.</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/VOTRE_PROFIL" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/VOTRE_GITHUB" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="contact.html" class="social-btn" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="index.html">Accueil</a>
+                    <a href="projets.html">Projets</a>
+                    <a href="realisations.html">Réalisations</a>
+                    <a href="veille.html">Veille</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Compétences</h4>
+                    <a href="realisations.html#systeme">Admin. Système</a>
+                    <a href="realisations.html#reseau">Admin. Réseau</a>
+                    <a href="realisations.html#securite">Cybersécurité</a>
+                    <a href="realisations.html#cloud">Cloud</a>
+                    <a href="realisations.html#dev">Automatisation</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <a href="https://www.linkedin.com/in/VOTRE_PROFIL">LinkedIn</a>
+                    <a href="https://github.com/VOTRE_GITHUB">GitHub</a>
+                    <a href="contact.html">Formulaire</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Votre Nom — Portfolio BTS SIO SISR</p>
+                <p>Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <div class="modal-overlay" id="modal-portfolio">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('modal-portfolio')"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2>Portfolio BTS SIO</h2>
+                <div class="modal-tags"><span class="project-tag">Développement</span></div>
+            </div>
+            <div class="modal-section">
+                <h4>Description</h4>
+                <p>Conception et développement d'un portfolio web complet pour présenter mes compétences, projets et expériences dans le cadre de l'épreuve E4 du BTS SIO SISR. Le site est responsive, supporte un thème clair/sombre et est déployé automatiquement via Vercel à chaque push GitHub.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Objectifs</h4>
+                <ul class="modal-objectives">
+                    <li>Créer une interface moderne et responsive</li>
+                    <li>Mettre en place un système de thème clair/sombre</li>
+                    <li>Déployer le site via CI/CD avec Vercel et GitHub</li>
+                    <li>Présenter les compétences, projets et expériences BTS</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h4>Technologies utilisées</h4>
+                <div class="modal-tech">
+                    <span class="tech-badge">HTML / CSS</span>
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">VS Code</span>
+                    <span class="tech-badge">GitHub</span>
+                    <span class="tech-badge">Vercel</span>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h4>Statut</h4>
+                <div class="modal-status-row"><span class="project-status status-completed" style="position:static">Terminé</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-vpn">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('modal-vpn')"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2>VPN IPsec / Stormshield</h2>
+                <div class="modal-tags"><span class="project-tag">Réseau</span><span class="project-tag">Sécurité</span></div>
+            </div>
+            <div class="modal-section">
+                <h4>Description</h4>
+                <p>Mise en place d'un tunnel VPN IPsec site-à-site à l'aide d'un pare-feu Stormshield Network Security (SNS) dans un environnement virtualisé sous VirtualBox. L'objectif est de sécuriser les communications entre deux réseaux distants.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Objectifs</h4>
+                <ul class="modal-objectives">
+                    <li>Configurer un pare-feu Stormshield SNS</li>
+                    <li>Établir un tunnel VPN IPsec site-à-site</li>
+                    <li>Tester et valider la connectivité sécurisée</li>
+                    <li>Rédiger la documentation technique</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h4>Technologies utilisées</h4>
+                <div class="modal-tech">
+                    <span class="tech-badge">Stormshield SNS</span>
+                    <span class="tech-badge">VirtualBox</span>
+                    <span class="tech-badge">IPsec</span>
+                    <span class="tech-badge">OpenVPN</span>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h4>Statut</h4>
+                <div class="modal-status-row"><span class="project-status status-completed" style="position:static">Terminé</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-nextcloud">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('modal-nextcloud')"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2>NextCloud</h2>
+                <div class="modal-tags"><span class="project-tag">Cloud</span><span class="project-tag">Système</span></div>
+            </div>
+            <div class="modal-section">
+                <h4>Description</h4>
+                <p>Déploiement d'une solution de stockage cloud auto-hébergée via NextCloud sur un serveur Linux Debian. Le projet inclut la configuration du serveur web Apache, de la base de données MariaDB, de PHP et la sécurisation HTTPS.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Objectifs</h4>
+                <ul class="modal-objectives">
+                    <li>Installer et configurer NextCloud sur Debian</li>
+                    <li>Mettre en place Apache, PHP et MariaDB</li>
+                    <li>Sécuriser l'accès avec un certificat SSL</li>
+                    <li>Gérer les utilisateurs et les droits d'accès</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h4>Technologies utilisées</h4>
+                <div class="modal-tech">
+                    <span class="tech-badge">NextCloud</span>
+                    <span class="tech-badge">Linux (Debian)</span>
+                    <span class="tech-badge">Apache</span>
+                    <span class="tech-badge">MariaDB</span>
+                    <span class="tech-badge">PHP</span>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h4>Statut</h4>
+                <div class="modal-status-row"><span class="project-status status-progress" style="position:static">En cours</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-wserver">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('modal-wserver')"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2>Windows Server 2022</h2>
+                <div class="modal-tags"><span class="project-tag">Système</span></div>
+            </div>
+            <div class="modal-section">
+                <h4>Description</h4>
+                <p>Installation et configuration complète d'un serveur Windows Server 2022 avec mise en place d'un domaine Active Directory, gestion des utilisateurs et groupes, déploiement de stratégies de groupe (GPO), ainsi que configuration des services DNS et DHCP.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Objectifs</h4>
+                <ul class="modal-objectives">
+                    <li>Installer Windows Server 2022 en machine virtuelle</li>
+                    <li>Configurer un domaine Active Directory</li>
+                    <li>Créer et gérer des utilisateurs, groupes et UO</li>
+                    <li>Déployer des GPO pour la gestion des postes</li>
+                    <li>Configurer les services DNS et DHCP</li>
+                    <li>Automatiser des tâches via PowerShell</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h4>Technologies utilisées</h4>
+                <div class="modal-tech">
+                    <span class="tech-badge">Windows Server 2022</span>
+                    <span class="tech-badge">Active Directory</span>
+                    <span class="tech-badge">GPO</span>
+                    <span class="tech-badge">DNS / DHCP</span>
+                    <span class="tech-badge">PowerShell</span>
+                    <span class="tech-badge">VirtualBox</span>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h4>Statut</h4>
+                <div class="modal-status-row"><span class="project-status status-completed" style="position:static">Terminé</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-apache">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('modal-apache')"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2>Serveur Web Apache</h2>
+                <div class="modal-tags"><span class="project-tag">Réseau</span><span class="project-tag">Système</span></div>
+            </div>
+            <div class="modal-section">
+                <h4>Description</h4>
+                <p>Configuration d'un serveur web Apache sur une distribution Linux Debian. Le projet comprend l'installation du service, la configuration de virtual hosts, la mise en place d'un enregistrement DNS et la sécurisation de l'accès via un certificat SSL auto-signé.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Objectifs</h4>
+                <ul class="modal-objectives">
+                    <li>Installer et configurer Apache sur Debian</li>
+                    <li>Mettre en place des virtual hosts</li>
+                    <li>Configurer la résolution DNS locale</li>
+                    <li>Sécuriser les échanges via SSL/HTTPS</li>
+                    <li>Héberger et tester des pages HTML</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h4>Technologies utilisées</h4>
+                <div class="modal-tech">
+                    <span class="tech-badge">Linux (Debian)</span>
+                    <span class="tech-badge">Apache</span>
+                    <span class="tech-badge">SSL / HTTPS</span>
+                    <span class="tech-badge">DNS</span>
+                    <span class="tech-badge">HTML</span>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h4>Statut</h4>
+                <div class="modal-status-row"><span class="project-status status-completed" style="position:static">Terminé</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Filters
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.project-card').forEach(card => {
+                    const show = filter === 'all' || card.classList.contains(filter);
+                    card.style.display = show ? '' : 'none';
+                    if (show) {
+                        card.style.animation = 'none';
+                        card.offsetHeight;
+                        card.style.animation = '';
+                    }
+                });
+            });
+        });
+
+        // Modals
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) closeModal(this.id);
+            });
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape')
+                document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+        });
+
+        // Burger
+        const burger = document.getElementById('burger');
+        const navLinks = document.querySelector('.nav-links');
+        burger.addEventListener('click', () => {
+            const open = navLinks.style.display === 'flex';
+            navLinks.style.display = open ? 'none' : 'flex';
+            if (!open) {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '64px';
+                navLinks.style.left = '0'; navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(8,12,16,0.97)';
+                navLinks.style.padding = '1rem 2rem';
+                navLinks.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
+            }
+        });
+
+        // Header border on scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').style.borderBottomColor =
+                window.scrollY > 50 ? 'rgba(0,212,255,0.15)' : 'rgba(255,255,255,0.06)';
+        });
+    </script>
+
+    
+    <script>
+        /* ── Theme toggle button ── */
+        (function() {
+            function getTheme() { return localStorage.getItem('kb-theme') || 'dark'; }
+            function setTheme(t) {
+                localStorage.setItem('kb-theme', t);
+                document.documentElement.setAttribute('data-theme', t);
+                var btn = document.getElementById('themeToggle');
+                if (btn) btn.innerHTML = t === 'light'
+                    ? '<i class="fas fa-sun"></i>'
+                    : '<i class="fas fa-moon"></i>';
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                var t = getTheme();
+                var btn = document.getElementById('themeToggle');
+                if (btn) {
+                    btn.innerHTML = t === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                    btn.addEventListener('click', function() {
+                        setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+                    });
+                }
+            });
+        })();
+    </script>
+
+
+    
+
+
+    <!-- PDF Download toast -->
+    <div id="doc-toast"><i class="fas fa-file-pdf"></i><span id="doc-toast-msg"></span></div>
+
+    <script>
+        /* ── Documentation PDF download handler ── */
+        var toastTimer;
+        function showToast(msg, type) {
+            var toast = document.getElementById('doc-toast');
+            var msgEl = document.getElementById('doc-toast-msg');
+            clearTimeout(toastTimer);
+            msgEl.textContent = msg;
+            toast.className = 'show ' + type;
+            toastTimer = setTimeout(function() { toast.className = ''; }, 3500);
+        }
+
+        document.querySelectorAll('.doc-dl').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                var name = this.getAttribute('data-name');
+                var href = this.getAttribute('href');
+
+                // Check if file likely exists via fetch HEAD
+                fetch(href, { method: 'HEAD' })
+                    .then(function(res) {
+                        if (res.ok) {
+                            showToast('Téléchargement de la documentation ' + name + '…', 'success');
+                            // Let the download proceed normally
+                        } else {
+                            throw new Error('not found');
+                        }
+                    })
+                    .catch(function() {
+                        e.preventDefault();
+                        showToast('Documentation ' + name + ' — bientôt disponible', 'pending');
+                    });
+            });
+        });
+    </script>
+
+
+    
+
+
+    
+
+
+    
+
+
+    <script>
+        /* ── Cursor: dot + lagging ring ── */
+        (function() {
+            if (window.matchMedia('(pointer: coarse)').matches) return;
+
+            const dot  = document.createElement('div'); dot.id  = 'c-dot';
+            const ring = document.createElement('div'); ring.id = 'c-ring';
+            document.body.appendChild(dot);
+            document.body.appendChild(ring);
+
+            let mx = -100, my = -100;
+            let rx = -100, ry = -100;
+
+            // Dot follows instantly
+            document.addEventListener('mousemove', function(e) {
+                mx = e.clientX; my = e.clientY;
+                dot.style.left = mx + 'px';
+                dot.style.top  = my + 'px';
+            });
+
+            // Ring lags behind with lerp
+            (function lerpRing() {
+                rx += (mx - rx) * 0.10;
+                ry += (my - ry) * 0.10;
+                ring.style.left = rx + 'px';
+                ring.style.top  = ry + 'px';
+                requestAnimationFrame(lerpRing);
+            })();
+
+            // Hover
+            const sel = 'a, button, input, textarea, select, [onclick], label';
+            document.addEventListener('mouseover', function(e) {
+                if (e.target.closest(sel)) {
+                    ring.classList.add('on-hover');
+                    dot.classList.add('on-hover');
+                }
+            });
+            document.addEventListener('mouseout', function(e) {
+                if (e.target.closest(sel)) {
+                    ring.classList.remove('on-hover');
+                    dot.classList.remove('on-hover');
+                }
+            });
+
+            // Click
+            document.addEventListener('mousedown', function() {
+                ring.classList.remove('on-hover');
+                ring.classList.add('on-click');
+                dot.classList.remove('on-hover');
+                dot.classList.add('on-click');
+            });
+            document.addEventListener('mouseup', function() {
+                ring.classList.remove('on-click');
+                dot.classList.remove('on-click');
+            });
+
+            // Hide outside window
+            document.addEventListener('mouseleave', function() { ring.classList.add('gone'); dot.classList.add('gone'); });
+            document.addEventListener('mouseenter', function() { ring.classList.remove('gone'); dot.classList.remove('gone'); });
+        })();
+    </script>
+
+</body>
+</html>
