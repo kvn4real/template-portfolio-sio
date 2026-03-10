@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <script>
+        /* ── Theme: apply before paint to avoid flash ── */
+        (function() {
+            var t = localStorage.getItem('kb-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ma veille technologique en cybersécurité : actualités, vulnérabilités, CVE et menaces informatiques via Google Alerts.">
+    <meta name="author" content="Votre Nom">
+    <meta name="keywords" content="Votre Nom, BTS SIO, SISR, portfolio, réseau, cybersécurité, informatique, stage, alternance">
+    <meta property="og:title" content="Veille Technologique — Votre Nom">
+    <meta property="og:description" content="Ma veille technologique en cybersécurité : actualités, vulnérabilités, CVE et menaces informatiques via Google Alerts.">
+    <meta property="og:url" content="https://VOTRE_SITE.vercel.app/veille">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Votre Nom — Portfolio">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Veille Technologique — Votre Nom">
+    <meta name="twitter:description" content="Ma veille technologique en cybersécurité : actualités, vulnérabilités, CVE et menaces informatiques via Google Alerts.">
+    <title>Veille Technologique — Votre Nom Portfolio BTS SIO SISR</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        
+        /* ══════════════════════════════════
+           THEME SYSTEM
+        ══════════════════════════════════ */
+        :root {
+            --bg: #080c10;
+            --bg2: #0d1219;
+            --surface: #121820;
+            --surface2: #1a2230;
+            --accent: #00d4ff;
+            --accent2: #0099cc;
+            --accent-glow: rgba(0, 212, 255, 0.15);
+            --text: #e8edf2;
+            --text-muted: #6b7f94;
+            --text-dim: #3d5068;
+            --border: rgba(0, 212, 255, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f0f4f8;
+            --bg2: #e2eaf3;
+            --surface: #ffffff;
+            --surface2: #d8e2ee;
+            --accent: #0099cc;
+            --accent2: #007aaa;
+            --accent-glow: rgba(0,153,204,0.12);
+            --text: #0d1a26;
+            --text-muted: #3d5a72;
+            --text-dim: #7a96b0;
+            --border: rgba(0,153,204,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+        /* smooth transition on theme switch */
+        html { transition: background 0.35s ease, color 0.35s ease; }
+        body, header, footer, .surface, section { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease; }
+
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 2px; }
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999; opacity: 0.4;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 0 2rem;
+            background: rgba(8,12,16,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border2);
+            height: 64px;
+            display: flex; align-items: center;
+            transition: border-color 0.3s;
+        }
+        nav { width: 100%; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .logo::before { content: '>'; color: var(--text-muted); animation: blink 1.2s step-end infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+        .nav-links a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; padding: 0.5rem 0.85rem; border-radius: 4px; transition: color 0.2s, background 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); background: var(--accent-glow); }
+        .theme-toggle { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); width: 34px; height: 34px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+        .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+        .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .burger span { display: block; width: 22px; height: 2px; background: var(--text-muted); transition: all 0.3s; }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            padding: 140px 2rem 80px;
+            position: relative; overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 20% 50%, black 0%, transparent 100%);
+        }
+        .page-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; }
+        .breadcrumb { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.1em; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.5s 0.1s forwards; }
+        .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--accent); }
+        .page-hero h1 { font-family: var(--font-display); font-size: clamp(3.5rem, 8vw, 7rem); line-height: 0.92; letter-spacing: 0.02em; color: var(--text); margin-bottom: 1.25rem; opacity: 0; animation: fadeUp 0.6s 0.2s forwards; }
+        .page-hero p { font-size: 1rem; color: var(--text-muted); max-width: 480px; font-weight: 300; line-height: 1.7; opacity: 0; animation: fadeUp 0.6s 0.35s forwards; }
+        .hero-about-btn {
+            opacity: 0; animation: fadeUp 0.6s 0.5s forwards;
+            align-self: flex-start; margin-top: 8rem;
+        }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+        /* ── ABOUT BTN ── */
+        .about-btn {
+            font-family: var(--font-mono); font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 0.85rem 1.5rem;
+            background: var(--accent-glow);
+            border: 1px solid var(--border);
+            color: var(--accent); border-radius: 4px;
+            cursor: pointer; transition: all 0.25s;
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            white-space: nowrap;
+        }
+        .about-btn:hover { background: rgba(0,212,255,0.2); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,212,255,0.2); }
+
+        /* ── LIVE STATUS BAR ── */
+        .status-bar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border2);
+            padding: 0.75rem 2rem;
+        }
+        .status-bar-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+        }
+        .status-indicator {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-family: var(--font-mono); font-size: 0.68rem;
+            color: var(--text-muted); letter-spacing: 0.08em;
+        }
+        .dot-live { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+        .dot-loading { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); animation: pulse 2s infinite; }
+        .dot-error { width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+        @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,0.4)} 50%{box-shadow:0 0 0 5px rgba(0,255,136,0)} }
+        .status-sep { color: var(--text-dim); }
+        .source-tag {
+            font-family: var(--font-mono); font-size: 0.62rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 3px; border: 1px solid var(--border2);
+            color: var(--text-dim); cursor: pointer; transition: all 0.2s;
+        }
+        .source-tag:hover, .source-tag.active { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+
+        /* ── MAIN SECTION ── */
+        .section { padding: 60px 2rem 100px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* ── FEED GRID ── */
+        #feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* ── RSS CARD ── */
+        .rss-item {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 10px;
+            padding: 1.75rem;
+            display: flex; flex-direction: column;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            position: relative; overflow: hidden;
+            opacity: 0; animation: cardIn 0.5s forwards;
+        }
+        .rss-item::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.4s;
+        }
+        .rss-item:hover { border-color: rgba(0,212,255,0.25); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+        .rss-item:hover::before { transform: scaleX(1); }
+        @keyframes cardIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+        .rss-source {
+            font-family: var(--font-mono); font-size: 0.6rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 0.75rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .rss-source::before { content: ''; display: block; width: 18px; height: 1px; background: var(--accent); }
+
+        .rss-item h3 {
+            font-size: 0.95rem; font-weight: 600;
+            line-height: 1.5; margin-bottom: 0.85rem;
+            flex-shrink: 0;
+        }
+        .rss-item h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+        .rss-item h3 a:hover { color: var(--accent); }
+
+        .rss-item p {
+            font-size: 0.83rem; color: var(--text-muted);
+            line-height: 1.7; flex-grow: 1; margin-bottom: 1.25rem;
+        }
+
+        .rss-footer {
+            display: flex; align-items: center; justify-content: space-between;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--border2);
+            margin-top: auto;
+        }
+        .rss-date {
+            font-family: var(--font-mono); font-size: 0.65rem;
+            color: var(--text-dim); letter-spacing: 0.06em;
+        }
+        .rss-link {
+            font-family: var(--font-mono); font-size: 0.65rem;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--text-dim); text-decoration: none;
+            display: flex; align-items: center; gap: 0.4rem;
+            transition: color 0.2s;
+        }
+        .rss-link:hover { color: var(--accent); }
+
+        /* ── SKELETON LOADER ── */
+        .skeleton {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 10px; padding: 1.75rem;
+        }
+        .skel-line {
+            height: 10px; border-radius: 4px;
+            background: linear-gradient(90deg, var(--surface2) 25%, var(--surface) 50%, var(--surface2) 75%);
+            background-size: 400% 100%;
+            animation: shimmer 1.5s infinite;
+            margin-bottom: 0.75rem;
+        }
+        .skel-line.short { width: 40%; }
+        .skel-line.medium { width: 70%; }
+        .skel-line.full { width: 100%; }
+        .skel-line.title { height: 14px; width: 85%; }
+        @keyframes shimmer { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
+
+        /* ── ERROR / EMPTY ── */
+        .feed-message {
+            grid-column: 1 / -1;
+            text-align: center; padding: 4rem 2rem;
+            color: var(--text-dim);
+            font-family: var(--font-mono); font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+        .feed-message i { font-size: 2rem; margin-bottom: 1rem; display: block; color: var(--text-dim); }
+
+        /* ── LOAD MORE ── */
+        .load-more-wrap { text-align: center; margin-top: 2.5rem; }
+        .load-more-btn {
+            font-family: var(--font-mono); font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 0.85rem 2rem;
+            background: transparent;
+            border: 1px solid var(--border2);
+            color: var(--text-muted); border-radius: 4px;
+            cursor: pointer; transition: all 0.25s;
+            display: inline-flex; align-items: center; gap: 0.6rem;
+        }
+        .load-more-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-glow); }
+
+        /* ── MODAL ── */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9000;
+            align-items: center; justify-content: center; padding: 1rem;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px; width: 100%; max-width: 680px;
+            max-height: 88vh; overflow-y: auto;
+            padding: 2.5rem; position: relative;
+            animation: modalIn 0.25s ease forwards;
+        }
+        @keyframes modalIn { from{opacity:0;transform:translateY(20px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+        .modal-close {
+            position: absolute; top: 1.25rem; right: 1.25rem;
+            width: 32px; height: 32px;
+            background: var(--surface2); border: 1px solid var(--border2);
+            border-radius: 50%; color: var(--text-muted);
+            cursor: pointer; font-size: 0.8rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .modal-close:hover { background: rgba(255,60,60,0.1); color: #ff4444; border-color: rgba(255,60,60,0.3); }
+        .modal-box h2 { font-family: var(--font-display); font-size: 2.2rem; letter-spacing: 0.04em; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border2); }
+        .modal-section { margin-bottom: 1.5rem; }
+        .modal-section h4 { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem; }
+        .modal-section p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; }
+
+        /* ── SOURCES PANEL ── */
+        .sources-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 0.75rem; }
+        .source-card {
+            background: var(--bg2); border: 1px solid var(--border2);
+            border-radius: 6px; padding: 0.85rem 1rem;
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .source-card-icon { color: var(--accent); font-size: 0.9rem; flex-shrink: 0; }
+        .source-card-name { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
+
+        /* ── FOOTER ── */
+        footer { background: var(--bg); border-top: 1px solid var(--border2); padding: 60px 2rem 30px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 50px; }
+        .footer-brand .logo-big { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.75rem; }
+        .footer-brand p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; max-width: 260px; }
+        .footer-col h4 { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-dim); margin-bottom: 1.25rem; }
+        .footer-col a { display: block; font-size: 0.85rem; color: var(--text-muted); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s, transform 0.2s; }
+        .footer-col a:hover { color: var(--accent); transform: translateX(3px); }
+        .footer-social { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+        .social-btn { width: 38px; height: 38px; background: var(--surface); border: 1px solid var(--border2); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: all 0.2s; }
+        .social-btn:hover { color: var(--accent); border-color: var(--border); background: var(--accent-glow); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; border-top: 1px solid var(--border2); }
+        .footer-bottom p { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.05em; }
+
+        /* ── REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .page-hero-inner { grid-template-columns: 1fr; }
+            .hero-about-btn { margin-top: 0; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .burger { display: flex; }
+            #feed { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+            .sources-grid { grid-template-columns: 1fr; }
+        }
+    
+        
+        /* Barre de progression en haut */
+
+        
+            #cursor-dot, #cursor-ring { display: none; }
+        }
+
+        /* ══════════════════════════════════
+           SMOOTH SCROLL
+        ══════════════════════════════════ */
+        html { scroll-behavior: auto !important; } /* on gère nous-mêmes */
+
+        
+        /* ══════════════════════════════════
+           CURSOR + VISUAL EFFECTS
+        ══════════════════════════════════ */
+
+        /* Curseur crosshair tech */
+        #cur-cross {
+            position: fixed; pointer-events: none; z-index: 999999;
+            width: 20px; height: 20px;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+        }
+        #cur-cross::before, #cur-cross::after {
+            content: '';
+            position: absolute;
+            background: var(--accent);
+        }
+        #cur-cross::before { width: 1px; height: 100%; left: 50%; top: 0; }
+        #cur-cross::after  { width: 100%; height: 1px; top: 50%; left: 0; }
+        #cur-dot {
+            position: fixed; pointer-events: none; z-index: 999999;
+            width: 4px; height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 6px var(--accent);
+        }
+        #cur-aura {
+            position: fixed; pointer-events: none; z-index: 999997;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0,212,255,0.055) 0%, transparent 70%);
+            transition: transform 0.08s linear;
+        }
+
+        /* Trail canvas */
+        #trail-canvas {
+            position: fixed; inset: 0;
+            pointer-events: none;
+            z-index: 999996;
+            opacity: 0.7;
+        }
+
+        /* Scanlines overlay */
+        #scanlines {
+            position: fixed; inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 3px,
+                rgba(0,0,0,0.06) 3px,
+                rgba(0,0,0,0.06) 4px
+            );
+            animation: scanmove 8s linear infinite;
+        }
+        @keyframes scanmove {
+            0%   { background-position: 0 0; }
+            100% { background-position: 0 100px; }
+        }
+
+        @media (pointer: coarse) {
+            *, *::before, *::after { cursor: auto !important; }
+            #cur-cross, #cur-dot, #cur-aura, #trail-canvas { display: none; }
+        }
+
+        
+        /* ══════════════════════════════════
+           LIQUID CURSOR
+        ══════════════════════════════════ */
+
+        #lc-blob {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999999;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+            transition:
+                width  0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                height 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                border-radius 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                background 0.3s ease,
+                opacity 0.3s ease;
+            filter: blur(0.5px);
+        }
+        #lc-blob.hovering {
+            width: 56px; height: 56px;
+            background: #ffffff;
+            filter: blur(1px);
+        }
+        #lc-blob.clicking {
+            width: 16px; height: 16px;
+            background: var(--accent);
+            filter: blur(0px);
+        }
+        #lc-blob.moving {
+            width: 32px; height: 14px;
+            border-radius: 50%;
+        }
+        #lc-blob.hidden { opacity: 0; }
+
+        @media (pointer: coarse) {
+            * { cursor: auto !important; }
+            #lc-blob { display: none; }
+        }
+
+        
+        /* ══════════════════════════════════
+           CURSOR
+        ══════════════════════════════════ */
+        * { cursor: none !important; }
+
+        #c-dot {
+            position: fixed; pointer-events: none; z-index: 999999;
+            width: 5px; height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s, background 0.2s;
+        }
+        #c-ring {
+            position: fixed; pointer-events: none; z-index: 999998;
+            width: 36px; height: 36px;
+            border: 1.5px solid var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition:
+                width  0.4s cubic-bezier(0.16,1,0.3,1),
+                height 0.4s cubic-bezier(0.16,1,0.3,1),
+                border-color 0.3s,
+                opacity 0.3s;
+            opacity: 0.7;
+        }
+        #c-ring.on-hover {
+            width: 52px; height: 52px;
+            border-color: #ffffff;
+            opacity: 1;
+        }
+        #c-ring.on-click {
+            width: 24px; height: 24px;
+            border-color: var(--accent);
+            opacity: 1;
+        }
+        #c-dot.on-hover { transform: translate(-50%, -50%) scale(0); }
+        #c-dot.on-click { transform: translate(-50%, -50%) scale(2.5); background: var(--accent); }
+        #c-ring.gone, #c-dot.gone { opacity: 0; }
+
+        @media (pointer: coarse) {
+            * { cursor: auto !important; }
+            #c-dot, #c-ring { display: none; }
+        }
+
+        </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <nav>
+            <a href="index.html" class="logo">Votre Nom</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="projets.html">Projets</a></li>
+                <li><a href="realisations.html">Réalisations</a></li>
+                <li><a href="veille.html" class="active">Veille</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button></li>
+            </ul>
+            <div class="burger" id="burger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <div>
+                <div class="breadcrumb">
+                    <a href="index.html">Accueil</a>
+                    <span>/</span>
+                    <span>Veille</span>
+                </div>
+                <h1>Veille<br>Techno</h1>
+                <p>Flux RSS en direct — Actualités cybersécurité et vulnérabilités informatiques sélectionnées.</p>
+            </div>
+            <div class="hero-about-btn">
+                <button class="about-btn" onclick="openModal()">
+                    <i class="fas fa-shield-alt"></i> À propos de ma veille
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+        <div class="status-bar-inner">
+            <div class="status-indicator" id="statusIndicator">
+                <div class="dot-loading" id="statusDot"></div>
+                <span id="statusText">Chargement du flux…</span>
+            </div>
+            <span class="status-sep">|</span>
+            <span id="articleCount" style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-dim)">— articles</span>
+            <span class="status-sep">|</span>
+            <span style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-dim)" id="lastUpdate">—</span>
+        </div>
+    </div>
+
+    <!-- FEED -->
+    <section class="section">
+        <div class="container">
+            <div id="feed">
+                <!-- Skeleton loaders -->
+                <div class="skeleton"><div class="skel-line short"></div><div class="skel-line title" style="margin-bottom:1rem"></div><div class="skel-line full"></div><div class="skel-line full"></div><div class="skel-line medium"></div></div>
+                <div class="skeleton"><div class="skel-line short"></div><div class="skel-line title" style="margin-bottom:1rem"></div><div class="skel-line full"></div><div class="skel-line full"></div><div class="skel-line medium"></div></div>
+                <div class="skeleton"><div class="skel-line short"></div><div class="skel-line title" style="margin-bottom:1rem"></div><div class="skel-line full"></div><div class="skel-line full"></div><div class="skel-line medium"></div></div>
+                <div class="skeleton"><div class="skel-line short"></div><div class="skel-line title" style="margin-bottom:1rem"></div><div class="skel-line full"></div><div class="skel-line full"></div><div class="skel-line medium"></div></div>
+                <div class="skeleton"><div class="skel-line short"></div><div class="skel-line title" style="margin-bottom:1rem"></div><div class="skel-line full"></div><div class="skel-line full"></div><div class="skel-line medium"></div></div>
+                <div class="skeleton"><div class="skel-line short"></div><div class="skel-line title" style="margin-bottom:1rem"></div><div class="skel-line full"></div><div class="skel-line full"></div><div class="skel-line medium"></div></div>
+            </div>
+            <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+                <button class="load-more-btn" id="loadMoreBtn"><i class="fas fa-sync-alt"></i> Rafraîchir le flux</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo-big">Votre Nom</div>
+                    <p>Étudiant BTS SIO SISR, passionné par les systèmes, réseaux et la cybersécurité. Disponible pour alternance en 2026.</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/VOTRE_PROFIL" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/VOTRE_GITHUB" class="social-btn"><i class="fab fa-github"></i></a>
+                        <a href="contact.html" class="social-btn"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="index.html">Accueil</a>
+                    <a href="projets.html">Projets</a>
+                    <a href="realisations.html">Réalisations</a>
+                    <a href="veille.html">Veille</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Sources RSS</h4>
+                    <a href="https://www.google.com/alerts" target="_blank">Google Alerts</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <a href="https://www.linkedin.com/in/VOTRE_PROFIL">LinkedIn</a>
+                    <a href="https://github.com/VOTRE_GITHUB">GitHub</a>
+                    <a href="contact.html">Formulaire</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Votre Nom — Portfolio BTS SIO SISR</p>
+                <p>Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="veilleModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <h2><i class="fas fa-shield-alt" style="color:var(--accent);margin-right:0.5rem;font-size:1.8rem"></i> Ma Veille Technologique</h2>
+            <div class="modal-section">
+                <h4>Thématique principale</h4>
+                <p><strong style="color:var(--accent)">Les vulnérabilités en informatique</strong> — Je réalise une veille technologique approfondie sur les vulnérabilités informatiques, qui représentent l'un des principaux points d'entrée des cyberattaques. Cette veille porte sur l'identification, l'analyse et la gestion des failles de sécurité affectant les systèmes, les réseaux, les applications et les infrastructures.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Pourquoi ce sujet ?</h4>
+                <p>En tant qu'étudiant en BTS SIO option SISR, la sécurité des systèmes et des réseaux est au cœur de ma formation. Comprendre les vulnérabilités — failles logicielles, erreurs de configuration, systèmes non mis à jour — est essentiel pour prévenir les attaques et renforcer la sécurité des infrastructures.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Ce que j'observe</h4>
+                <p>Je suis les CVE récemment découvertes, les failles critiques exploitées, ainsi que les méthodes de correction (patchs, audits). Je surveille aussi les outils de scan de vulnérabilités et les bases de données de référence comme NVD et CVE.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Sources surveillées</h4>
+                <div class="sources-grid">
+                    <div class="source-card"><div class="source-card-icon"><i class="fab fa-google"></i></div><span class="source-card-name">Google Alerts — Vulnérabilités</span></div>
+                    <div class="source-card"><div class="source-card-icon"><i class="fab fa-google"></i></div><span class="source-card-name">Google Alerts — CVE</span></div>
+                    <div class="source-card"><div class="source-card-icon"><i class="fab fa-google"></i></div><span class="source-card-name">Google Alerts — Cybersécurité</span></div>
+                    <div class="source-card"><div class="source-card-icon"><i class="fab fa-google"></i></div><span class="source-card-name">Google Alerts — Failles Zero-Day</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── Google Alerts RSS Feeds ──
+        const RSS_FEEDS = [
+            { name: 'Google Alerts', url: 'https://www.google.fr/alerts/feeds/VOTRE_GOOGLE_ALERTS_ID/16816026180100545265' },
+            { name: 'Google Alerts', url: 'https://www.google.fr/alerts/feeds/VOTRE_GOOGLE_ALERTS_ID/8474316023604839732' },
+            { name: 'Google Alerts', url: 'https://www.google.fr/alerts/feeds/VOTRE_GOOGLE_ALERTS_ID/10326536428915091533' },
+            { name: 'Google Alerts', url: 'https://www.google.fr/alerts/feeds/VOTRE_GOOGLE_ALERTS_ID/14212046873312761003' },
+            { name: 'Google Alerts', url: 'https://www.google.fr/alerts/feeds/VOTRE_GOOGLE_ALERTS_ID/11541827781039020027' },
+            { name: 'Google Alerts', url: 'https://www.google.fr/alerts/feeds/VOTRE_GOOGLE_ALERTS_ID/5618004717082468562' },
+            { name: 'Google Alerts', url: 'https://www.google.fr/alerts/feeds/VOTRE_GOOGLE_ALERTS_ID/7970791055976495430' },
+            { name: 'Google Alerts', url: 'https://www.google.fr/alerts/feeds/VOTRE_GOOGLE_ALERTS_ID/9517219312954008605' },
+            { name: 'Google Alerts', url: 'https://www.google.fr/alerts/feeds/VOTRE_GOOGLE_ALERTS_ID/16265423557859791515' },
+            { name: 'Google Alerts', url: 'https://www.google.fr/alerts/feeds/VOTRE_GOOGLE_ALERTS_ID/1545228484440247549' },
+        ];
+
+        const CORS_PROXY = 'https://api.allorigins.win/get?url=';
+        const ITEMS_PER_FEED = 10;
+        const MAX_TOTAL = 20;
+        const CACHE_KEY = 'kb-veille-cache';
+
+        let allItems = [];
+
+        // Load cached articles from localStorage
+        function loadCache() {
+            try {
+                const raw = localStorage.getItem(CACHE_KEY);
+                if (!raw) return [];
+                return JSON.parse(raw).map(item => ({
+                    ...item,
+                    rawDate: new Date(item.rawDate)
+                }));
+            } catch { return []; }
+        }
+
+        // Save articles to localStorage
+        function saveCache(items) {
+            try {
+                const toSave = items.slice(0, 40).map(item => ({
+                    ...item,
+                    rawDate: item.rawDate.toISOString()
+                }));
+                localStorage.setItem(CACHE_KEY, JSON.stringify(toSave));
+            } catch {}
+        }
+
+        // Merge new items with cached, deduplicate by link, keep 40 most recent
+        function mergeWithCache(newItems, cached) {
+            const seen = new Set();
+            const merged = [...newItems, ...cached].filter(item => {
+                if (seen.has(item.link)) return false;
+                seen.add(item.link);
+                return true;
+            });
+            merged.sort((a, b) => b.rawDate - a.rawDate);
+            return merged.slice(0, 40);
+        }
+
+        async function fetchFeed(feed) {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 6000); // 6s max par flux
+            try {
+                const res = await fetch(CORS_PROXY + encodeURIComponent(feed.url), { signal: controller.signal });
+                clearTimeout(timeout);
+                if (!res.ok) throw new Error('Network error');
+                const json = await res.json();
+                const xml = new DOMParser().parseFromString(json.contents, 'text/xml');
+
+                // Atom feed (Google Alerts format)
+                const entries = Array.from(xml.querySelectorAll('entry'));
+                const feedTitle = xml.querySelector('feed > title')?.textContent || '';
+                const source = feedTitle
+                    .replace(/^Google Alert\s*[-–]\s*/i, '')
+                    .replace(/^Google Alerts\s*[-–]\s*/i, '')
+                    .trim() || 'Google Alerts';
+
+                return entries.slice(0, ITEMS_PER_FEED).map(entry => {
+                    // Title — strip HTML tags
+                    const rawTitle = entry.querySelector('title')?.textContent || 'Sans titre';
+                    const title = stripHtml(rawTitle);
+
+                    // Link — Google Alerts wraps real URL in a redirect
+                    const rawLink = entry.querySelector('link')?.getAttribute('href') || '#';
+                    const link = decodeGoogleUrl(rawLink);
+
+                    // Description / content
+                    const content = entry.querySelector('content')?.textContent
+                        || entry.querySelector('summary')?.textContent
+                        || '';
+                    const description = stripHtml(content).substring(0, 200).trim() + (content.length > 200 ? '…' : '');
+
+                    // Date
+                    const dateStr = entry.querySelector('updated, published')?.textContent || '';
+                    const rawDate = dateStr ? new Date(dateStr) : new Date(0);
+                    const pubDate = dateStr ? formatDate(dateStr) : '—';
+
+                    return { source, title, link, description, pubDate, rawDate };
+                });
+            } catch (e) {
+                clearTimeout(timeout);
+                console.warn(`Feed failed (${feed.url}):`, e);
+                return [];
+            }
+        }
+
+        function decodeGoogleUrl(url) {
+            // Google Alerts wraps links like: https://www.google.com/url?rct=j&sa=t&url=https%3A%2F%2F...
+            try {
+                const u = new URL(url);
+                const real = u.searchParams.get('url');
+                return real ? real : url;
+            } catch { return url; }
+        }
+
+        function stripHtml(html) {
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            return div.textContent || div.innerText || '';
+        }
+
+        function formatDate(dateStr) {
+            try {
+                return new Date(dateStr).toLocaleDateString('fr-FR', {
+                    day: '2-digit', month: 'short', year: 'numeric'
+                });
+            } catch { return '—'; }
+        }
+
+        function setStatus(state, count) {
+            const dot = document.getElementById('statusDot');
+            const text = document.getElementById('statusText');
+            const countEl = document.getElementById('articleCount');
+            const update = document.getElementById('lastUpdate');
+
+            if (state === 'live') {
+                dot.className = 'dot-live';
+                text.textContent = 'Flux en direct';
+                countEl.textContent = `${count} articles`;
+                update.textContent = 'Mis à jour ' + new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'});
+            } else if (state === 'error') {
+                dot.className = 'dot-error';
+                text.textContent = 'Flux partiellement indisponible';
+                countEl.textContent = `${count} articles`;
+            } else {
+                dot.className = 'dot-loading';
+                text.textContent = 'Chargement du flux…';
+            }
+        }
+
+        function renderCards(items) {
+            const feed = document.getElementById('feed');
+            feed.innerHTML = '';
+
+            if (!items.length) {
+                feed.innerHTML = `
+                    <div class="feed-message">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Impossible de charger le flux RSS.<br>
+                        Vérifiez votre connexion ou réessayez plus tard.
+                    </div>`;
+                return;
+            }
+
+            items.forEach((item, i) => {
+                const card = document.createElement('div');
+                card.className = 'rss-item';
+                card.style.animationDelay = `${i * 60}ms`;
+                card.innerHTML = `
+                    <div class="rss-source">${item.source}</div>
+                    <h3><a href="${item.link}" target="_blank" rel="noopener">${item.title}</a></h3>
+                    <p>${item.description}</p>
+                    <div class="rss-footer">
+                        <span class="rss-date"><i class="fas fa-calendar-alt" style="margin-right:0.35rem;color:var(--text-dim)"></i>${item.pubDate}</span>
+                        <a href="${item.link}" target="_blank" rel="noopener" class="rss-link">Lire <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                `;
+                feed.appendChild(card);
+            });
+        }
+
+        async function loadAllFeeds() {
+            setStatus('loading', 0);
+            allItems = [];
+            document.getElementById('loadMoreWrap').style.display = 'none';
+
+            // Show cached articles immediately while loading
+            const cached = loadCache();
+            if (cached.length) {
+                allItems = cached;
+                renderCards(allItems.slice(0, MAX_TOTAL));
+                setStatus('loading', allItems.length);
+            }
+
+            let completed = 0;
+            let hasError = false;
+
+            function addItems(newItems) {
+                allItems = mergeWithCache(newItems, allItems);
+                saveCache(allItems);
+                renderCards(allItems.slice(0, MAX_TOTAL));
+            }
+
+            const promises = RSS_FEEDS.map(feed =>
+                fetchFeed(feed).then(items => {
+                    completed++;
+                    if (items.length === 0) hasError = true;
+                    if (items.length > 0) addItems(items);
+                    setStatus(completed < RSS_FEEDS.length ? 'loading' : (hasError ? 'error' : 'live'), Math.min(allItems.length, MAX_TOTAL));
+                }).catch(() => {
+                    completed++;
+                    hasError = true;
+                })
+            );
+
+            await Promise.allSettled(promises);
+            // Final render with exactly 20 articles
+            renderCards(allItems.slice(0, MAX_TOTAL));
+            setStatus(hasError ? 'error' : 'live', Math.min(allItems.length, MAX_TOTAL));
+            document.getElementById('loadMoreWrap').style.display = 'block';
+        }
+
+        // ── Modal ──
+        function openModal() {
+            document.getElementById('veilleModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('veilleModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('veilleModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        // ── Load more / refresh ──
+        document.getElementById('loadMoreBtn').addEventListener('click', () => {
+            document.getElementById('loadMoreWrap').style.display = 'none';
+            document.getElementById('feed').innerHTML = `
+                <div class="skeleton"><div class="skel-line short"></div><div class="skel-line title" style="margin-bottom:1rem"></div><div class="skel-line full"></div><div class="skel-line full"></div><div class="skel-line medium"></div></div>
+                <div class="skeleton"><div class="skel-line short"></div><div class="skel-line title" style="margin-bottom:1rem"></div><div class="skel-line full"></div><div class="skel-line full"></div><div class="skel-line medium"></div></div>
+                <div class="skeleton"><div class="skel-line short"></div><div class="skel-line title" style="margin-bottom:1rem"></div><div class="skel-line full"></div><div class="skel-line full"></div><div class="skel-line medium"></div></div>
+            `;
+            loadAllFeeds();
+        });
+
+        // ── Burger ──
+        const burger = document.getElementById('burger');
+        const navLinks = document.querySelector('.nav-links');
+        burger.addEventListener('click', () => {
+            const open = navLinks.style.display === 'flex';
+            navLinks.style.display = open ? 'none' : 'flex';
+            if (!open) {
+                Object.assign(navLinks.style, {
+                    flexDirection:'column', position:'absolute',
+                    top:'64px', left:'0', right:'0',
+                    background:'rgba(8,12,16,0.97)',
+                    padding:'1rem 2rem',
+                    borderBottom:'1px solid rgba(255,255,255,0.06)'
+                });
+            }
+        });
+
+        // ── Header border ──
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').style.borderBottomColor =
+                window.scrollY > 50 ? 'rgba(0,212,255,0.15)' : 'rgba(255,255,255,0.06)';
+        });
+
+        // ── Init ──
+        loadAllFeeds();
+    </script>
+
+    
+    <script>
+        /* ── Theme toggle button ── */
+        (function() {
+            function getTheme() { return localStorage.getItem('kb-theme') || 'dark'; }
+            function setTheme(t) {
+                localStorage.setItem('kb-theme', t);
+                document.documentElement.setAttribute('data-theme', t);
+                var btn = document.getElementById('themeToggle');
+                if (btn) btn.innerHTML = t === 'light'
+                    ? '<i class="fas fa-sun"></i>'
+                    : '<i class="fas fa-moon"></i>';
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                var t = getTheme();
+                var btn = document.getElementById('themeToggle');
+                if (btn) {
+                    btn.innerHTML = t === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                    btn.addEventListener('click', function() {
+                        setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+                    });
+                }
+            });
+        })();
+    </script>
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    <script>
+        /* ── Cursor: dot + lagging ring ── */
+        (function() {
+            if (window.matchMedia('(pointer: coarse)').matches) return;
+
+            const dot  = document.createElement('div'); dot.id  = 'c-dot';
+            const ring = document.createElement('div'); ring.id = 'c-ring';
+            document.body.appendChild(dot);
+            document.body.appendChild(ring);
+
+            let mx = -100, my = -100;
+            let rx = -100, ry = -100;
+
+            // Dot follows instantly
+            document.addEventListener('mousemove', function(e) {
+                mx = e.clientX; my = e.clientY;
+                dot.style.left = mx + 'px';
+                dot.style.top  = my + 'px';
+            });
+
+            // Ring lags behind with lerp
+            (function lerpRing() {
+                rx += (mx - rx) * 0.10;
+                ry += (my - ry) * 0.10;
+                ring.style.left = rx + 'px';
+                ring.style.top  = ry + 'px';
+                requestAnimationFrame(lerpRing);
+            })();
+
+            // Hover
+            const sel = 'a, button, input, textarea, select, [onclick], label';
+            document.addEventListener('mouseover', function(e) {
+                if (e.target.closest(sel)) {
+                    ring.classList.add('on-hover');
+                    dot.classList.add('on-hover');
+                }
+            });
+            document.addEventListener('mouseout', function(e) {
+                if (e.target.closest(sel)) {
+                    ring.classList.remove('on-hover');
+                    dot.classList.remove('on-hover');
+                }
+            });
+
+            // Click
+            document.addEventListener('mousedown', function() {
+                ring.classList.remove('on-hover');
+                ring.classList.add('on-click');
+                dot.classList.remove('on-hover');
+                dot.classList.add('on-click');
+            });
+            document.addEventListener('mouseup', function() {
+                ring.classList.remove('on-click');
+                dot.classList.remove('on-click');
+            });
+
+            // Hide outside window
+            document.addEventListener('mouseleave', function() { ring.classList.add('gone'); dot.classList.add('gone'); });
+            document.addEventListener('mouseenter', function() { ring.classList.remove('gone'); dot.classList.remove('gone'); });
+        })();
+    </script>
+
+</body>
+</html>
