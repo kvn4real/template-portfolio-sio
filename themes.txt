@@ -1,0 +1,728 @@
+═══════════════════════════════════════════════════════
+   THÈMES PORTFOLIO — 20 VARIANTES CSS
+   Copier-coller le bloc complet dans ton <style>
+   pour remplacer le thème actuel
+═══════════════════════════════════════════════════════
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 01. CYBER CYAN (défaut)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #080c10;
+            --bg2: #0d1219;
+            --surface: #121820;
+            --surface2: #1a2230;
+            --accent: #00d4ff;
+            --accent2: #0099cc;
+            --accent-glow: rgba(0, 212, 255, 0.15);
+            --text: #e8edf2;
+            --text-muted: #6b7f94;
+            --text-dim: #3d5068;
+            --border: rgba(0, 212, 255, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f0f4f8;
+            --bg2: #e2eaf3;
+            --surface: #ffffff;
+            --surface2: #d8e2ee;
+            --accent: #0099cc;
+            --accent2: #007aaa;
+            --accent-glow: rgba(0,153,204,0.12);
+            --text: #0d1a26;
+            --text-muted: #3d5a72;
+            --text-dim: #7a96b0;
+            --border: rgba(0,153,204,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 02. NEON VIOLET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #08070f;
+            --bg2: #0e0c1a;
+            --surface: #110f1e;
+            --surface2: #1a172e;
+            --accent: #9b5de5;
+            --accent2: #7c3fd1;
+            --accent-glow: rgba(155, 93, 229, 0.15);
+            --text: #ede8f5;
+            --text-muted: #7a6e9a;
+            --text-dim: #4a3d6e;
+            --border: rgba(155, 93, 229, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f5f0ff;
+            --bg2: #ece5ff;
+            --surface: #ffffff;
+            --surface2: #ddd5f5;
+            --accent: #7c3fd1;
+            --accent2: #6020b0;
+            --accent-glow: rgba(124,63,209,0.12);
+            --text: #1a0d33;
+            --text-muted: #5a4080;
+            --text-dim: #9a80cc;
+            --border: rgba(124,63,209,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 03. MATRIX GREEN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #050e08;
+            --bg2: #0a1a0d;
+            --surface: #0d1a10;
+            --surface2: #152b1a;
+            --accent: #00ff87;
+            --accent2: #00c860;
+            --accent-glow: rgba(0, 255, 135, 0.15);
+            --text: #e0f5e8;
+            --text-muted: #5a9468;
+            --text-dim: #2e5c3a;
+            --border: rgba(0, 255, 135, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f0fff5;
+            --bg2: #e0ffe8;
+            --surface: #ffffff;
+            --surface2: #d0f0da;
+            --accent: #00a855;
+            --accent2: #008040;
+            --accent-glow: rgba(0,168,85,0.12);
+            --text: #062e14;
+            --text-muted: #2a6e40;
+            --text-dim: #70aa88;
+            --border: rgba(0,168,85,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 04. EMBER ORANGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #0e0805;
+            --bg2: #1a1008;
+            --surface: #1c1008;
+            --surface2: #2a1a0e;
+            --accent: #ff6b2b;
+            --accent2: #d44a10;
+            --accent-glow: rgba(255, 107, 43, 0.15);
+            --text: #f5ede8;
+            --text-muted: #9a6a54;
+            --text-dim: #5e3a28;
+            --border: rgba(255, 107, 43, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #fff5f0;
+            --bg2: #ffe8e0;
+            --surface: #ffffff;
+            --surface2: #ffd8c8;
+            --accent: #d44a10;
+            --accent2: #aa3000;
+            --accent-glow: rgba(212,74,16,0.12);
+            --text: #2e0e06;
+            --text-muted: #7a3a1e;
+            --text-dim: #cc8866;
+            --border: rgba(212,74,16,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 05. ROSE GOLD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #0f080c;
+            --bg2: #1a1015;
+            --surface: #1e1015;
+            --surface2: #2e1822;
+            --accent: #ff6eb0;
+            --accent2: #d44a8a;
+            --accent-glow: rgba(255, 110, 176, 0.15);
+            --text: #f5e8ef;
+            --text-muted: #9a6480;
+            --text-dim: #5e3050;
+            --border: rgba(255, 110, 176, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #fff0f6;
+            --bg2: #ffe0ef;
+            --surface: #ffffff;
+            --surface2: #ffd0e8;
+            --accent: #d44a8a;
+            --accent2: #aa2868;
+            --accent-glow: rgba(212,74,138,0.12);
+            --text: #2e0618;
+            --text-muted: #7a2a50;
+            --text-dim: #cc88aa;
+            --border: rgba(212,74,138,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 06. ACID YELLOW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #0c0e05;
+            --bg2: #161a08;
+            --surface: #181b08;
+            --surface2: #252d0e;
+            --accent: #d4ff00;
+            --accent2: #aad400;
+            --accent-glow: rgba(212, 255, 0, 0.15);
+            --text: #f0f5e0;
+            --text-muted: #7a8a50;
+            --text-dim: #4a5a28;
+            --border: rgba(212, 255, 0, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f8fff0;
+            --bg2: #eeffd8;
+            --surface: #ffffff;
+            --surface2: #e0f5c0;
+            --accent: #8aaa00;
+            --accent2: #6a8800;
+            --accent-glow: rgba(138,170,0,0.12);
+            --text: #1a2006;
+            --text-muted: #4a5a18;
+            --text-dim: #8aaa50;
+            --border: rgba(138,170,0,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 07. ICE BLUE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #060b10;
+            --bg2: #0c1520;
+            --surface: #0e1620;
+            --surface2: #162230;
+            --accent: #48c9f0;
+            --accent2: #1aaad4;
+            --accent-glow: rgba(72, 201, 240, 0.15);
+            --text: #e0edf5;
+            --text-muted: #507a94;
+            --text-dim: #2e4e64;
+            --border: rgba(72, 201, 240, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f0f8ff;
+            --bg2: #e0f0ff;
+            --surface: #ffffff;
+            --surface2: #d0e8f8;
+            --accent: #0a88bb;
+            --accent2: #006699;
+            --accent-glow: rgba(10,136,187,0.12);
+            --text: #061828;
+            --text-muted: #2a5870;
+            --text-dim: #7aaabb;
+            --border: rgba(10,136,187,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 08. MAGENTA FLUX
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #0e050e;
+            --bg2: #1a0a1a;
+            --surface: #1c0d1c;
+            --surface2: #2a1a2a;
+            --accent: #f000ff;
+            --accent2: #c000d0;
+            --accent-glow: rgba(240, 0, 255, 0.15);
+            --text: #f5e0f5;
+            --text-muted: #8a508a;
+            --text-dim: #5a2a5a;
+            --border: rgba(240, 0, 255, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #fff0ff;
+            --bg2: #ffe0ff;
+            --surface: #ffffff;
+            --surface2: #f5d0f5;
+            --accent: #b000bb;
+            --accent2: #880099;
+            --accent-glow: rgba(176,0,187,0.12);
+            --text: #280528;
+            --text-muted: #6a1a6a;
+            --text-dim: #bb77bb;
+            --border: rgba(176,0,187,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 09. SUNSET RED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #0f0505;
+            --bg2: #1a0a0a;
+            --surface: #1e0a0a;
+            --surface2: #2e1212;
+            --accent: #ff3b3b;
+            --accent2: #dd1515;
+            --accent-glow: rgba(255, 59, 59, 0.15);
+            --text: #f5e8e8;
+            --text-muted: #9a5454;
+            --text-dim: #5e2a2a;
+            --border: rgba(255, 59, 59, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #fff5f5;
+            --bg2: #ffe8e8;
+            --surface: #ffffff;
+            --surface2: #ffd8d8;
+            --accent: #cc1515;
+            --accent2: #aa0000;
+            --accent-glow: rgba(204,21,21,0.12);
+            --text: #2e0505;
+            --text-muted: #7a1a1a;
+            --text-dim: #cc7777;
+            --border: rgba(204,21,21,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 10. ARCTIC WHITE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #07090c;
+            --bg2: #10141a;
+            --surface: #10151c;
+            --surface2: #1a2028;
+            --accent: #ffffff;
+            --accent2: #cccccc;
+            --accent-glow: rgba(255, 255, 255, 0.15);
+            --text: #e8ecf0;
+            --text-muted: #6b7a8a;
+            --text-dim: #3d4e5e;
+            --border: rgba(255, 255, 255, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f8f9fa;
+            --bg2: #edf0f3;
+            --surface: #ffffff;
+            --surface2: #e0e5ea;
+            --accent: #444c55;
+            --accent2: #2a3240;
+            --accent-glow: rgba(68,76,85,0.12);
+            --text: #0a0e12;
+            --text-muted: #3a4550;
+            --text-dim: #8090a0;
+            --border: rgba(68,76,85,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 11. DEEP GOLD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #0c0900;
+            --bg2: #181200;
+            --surface: #1a1400;
+            --surface2: #281e00;
+            --accent: #ffd700;
+            --accent2: #ccaa00;
+            --accent-glow: rgba(255, 215, 0, 0.15);
+            --text: #f5f0e0;
+            --text-muted: #8a7840;
+            --text-dim: #5a4e20;
+            --border: rgba(255, 215, 0, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #fffdf0;
+            --bg2: #fff8d8;
+            --surface: #ffffff;
+            --surface2: #fff0c0;
+            --accent: #cc9900;
+            --accent2: #aa7700;
+            --accent-glow: rgba(204,153,0,0.12);
+            --text: #2a2000;
+            --text-muted: #6a5000;
+            --text-dim: #bbaa55;
+            --border: rgba(204,153,0,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 12. TOXIC LIME
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #050c00;
+            --bg2: #0c1800;
+            --surface: #0d1a00;
+            --surface2: #1a2e00;
+            --accent: #aaff00;
+            --accent2: #88cc00;
+            --accent-glow: rgba(170, 255, 0, 0.15);
+            --text: #eaf5e0;
+            --text-muted: #6a8a40;
+            --text-dim: #3e5a20;
+            --border: rgba(170, 255, 0, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f5fff0;
+            --bg2: #e8ffe0;
+            --surface: #ffffff;
+            --surface2: #d8f5c8;
+            --accent: #66cc00;
+            --accent2: #4a9900;
+            --accent-glow: rgba(102,204,0,0.12);
+            --text: #102000;
+            --text-muted: #3a6000;
+            --text-dim: #88bb55;
+            --border: rgba(102,204,0,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 13. OCEAN TEAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #020e0e;
+            --bg2: #061818;
+            --surface: #051a1a;
+            --surface2: #0e2a2a;
+            --accent: #00d4aa;
+            --accent2: #00aa88;
+            --accent-glow: rgba(0, 212, 170, 0.15);
+            --text: #e0f5f2;
+            --text-muted: #409480;
+            --text-dim: #1e6050;
+            --border: rgba(0, 212, 170, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f0fffc;
+            --bg2: #e0fff8;
+            --surface: #ffffff;
+            --surface2: #c8f5ee;
+            --accent: #009975;
+            --accent2: #007755;
+            --accent-glow: rgba(0,153,117,0.12);
+            --text: #001e1a;
+            --text-muted: #1a6050;
+            --text-dim: #66bbaa;
+            --border: rgba(0,153,117,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 14. INFRARED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #0e0200;
+            --bg2: #1a0500;
+            --surface: #1e0500;
+            --surface2: #2e0c00;
+            --accent: #ff4500;
+            --accent2: #dd2a00;
+            --accent-glow: rgba(255, 69, 0, 0.15);
+            --text: #f5ebe0;
+            --text-muted: #9a6040;
+            --text-dim: #5e3018;
+            --border: rgba(255, 69, 0, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #fff5f0;
+            --bg2: #ffe8e0;
+            --surface: #ffffff;
+            --surface2: #ffd8c8;
+            --accent: #cc2a00;
+            --accent2: #aa1500;
+            --accent-glow: rgba(204,42,0,0.12);
+            --text: #2e0a00;
+            --text-muted: #7a2a00;
+            --text-dim: #cc8855;
+            --border: rgba(204,42,0,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 15. COBALT BLUE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #02040e;
+            --bg2: #060a1a;
+            --surface: #050a1e;
+            --surface2: #0e1430;
+            --accent: #2255ff;
+            --accent2: #0033dd;
+            --accent-glow: rgba(34, 85, 255, 0.15);
+            --text: #e0e5f5;
+            --text-muted: #4050a0;
+            --text-dim: #202868;
+            --border: rgba(34, 85, 255, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f0f2ff;
+            --bg2: #e0e5ff;
+            --surface: #ffffff;
+            --surface2: #d0d8ff;
+            --accent: #0033cc;
+            --accent2: #0022aa;
+            --accent-glow: rgba(0,51,204,0.12);
+            --text: #000a2e;
+            --text-muted: #1a2a80;
+            --text-dim: #6677cc;
+            --border: rgba(0,51,204,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 16. NEON PINK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #0e0008;
+            --bg2: #1a0010;
+            --surface: #1e0010;
+            --surface2: #2e001e;
+            --accent: #ff0080;
+            --accent2: #dd0066;
+            --accent-glow: rgba(255, 0, 128, 0.15);
+            --text: #f5e0ec;
+            --text-muted: #9a4070;
+            --text-dim: #5e1840;
+            --border: rgba(255, 0, 128, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #fff0f8;
+            --bg2: #ffe0f0;
+            --surface: #ffffff;
+            --surface2: #ffd0e8;
+            --accent: #cc0060;
+            --accent2: #aa0048;
+            --accent-glow: rgba(204,0,96,0.12);
+            --text: #2e0018;
+            --text-muted: #7a0040;
+            --text-dim: #cc6699;
+            --border: rgba(204,0,96,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 17. PLASMA PURPLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #080010;
+            --bg2: #100020;
+            --surface: #100020;
+            --surface2: #1e0038;
+            --accent: #bb44ff;
+            --accent2: #9900ee;
+            --accent-glow: rgba(187, 68, 255, 0.15);
+            --text: #ede0f5;
+            --text-muted: #7040a0;
+            --text-dim: #401868;
+            --border: rgba(187, 68, 255, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f8f0ff;
+            --bg2: #f0e0ff;
+            --surface: #ffffff;
+            --surface2: #e8d0ff;
+            --accent: #8800ee;
+            --accent2: #6600bb;
+            --accent-glow: rgba(136,0,238,0.12);
+            --text: #180028;
+            --text-muted: #4a0088;
+            --text-dim: #aa66dd;
+            --border: rgba(136,0,238,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 18. RETRO AMBER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #0e0800;
+            --bg2: #1a1000;
+            --surface: #1e1200;
+            --surface2: #2e1e00;
+            --accent: #ff9500;
+            --accent2: #dd7700;
+            --accent-glow: rgba(255, 149, 0, 0.15);
+            --text: #f5eee0;
+            --text-muted: #9a7040;
+            --text-dim: #5e4018;
+            --border: rgba(255, 149, 0, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #fffaf0;
+            --bg2: #fff0d8;
+            --surface: #ffffff;
+            --surface2: #ffe8c0;
+            --accent: #cc6600;
+            --accent2: #aa4400;
+            --accent-glow: rgba(204,102,0,0.12);
+            --text: #2e1800;
+            --text-muted: #7a4000;
+            --text-dim: #cc9955;
+            --border: rgba(204,102,0,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 19. GLACIAL MINT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #030e0a;
+            --bg2: #071a12;
+            --surface: #071a12;
+            --surface2: #102a1e;
+            --accent: #44ffcc;
+            --accent2: #00ddaa;
+            --accent-glow: rgba(68, 255, 204, 0.15);
+            --text: #e0f5ee;
+            --text-muted: #40906c;
+            --text-dim: #1e6044;
+            --border: rgba(68, 255, 204, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f0fffa;
+            --bg2: #e0fff5;
+            --surface: #ffffff;
+            --surface2: #c8f5ec;
+            --accent: #00bb88;
+            --accent2: #009966;
+            --accent-glow: rgba(0,187,136,0.12);
+            --text: #001a10;
+            --text-muted: #1a6048;
+            --text-dim: #66bbaa;
+            --border: rgba(0,187,136,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 20. CHROME SILVER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        :root {
+            --bg: #080808;
+            --bg2: #121212;
+            --surface: #141414;
+            --surface2: #202020;
+            --accent: #cccccc;
+            --accent2: #aaaaaa;
+            --accent-glow: rgba(204, 204, 204, 0.15);
+            --text: #e8e8e8;
+            --text-muted: #707070;
+            --text-dim: #404040;
+            --border: rgba(204, 204, 204, 0.12);
+            --border2: rgba(255,255,255,0.06);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg: #f5f5f5;
+            --bg2: #eeeeee;
+            --surface: #ffffff;
+            --surface2: #e0e0e0;
+            --accent: #666666;
+            --accent2: #444444;
+            --accent-glow: rgba(102,102,102,0.12);
+            --text: #111111;
+            --text-muted: #444444;
+            --text-dim: #999999;
+            --border: rgba(102,102,102,0.2);
+            --border2: rgba(0,0,0,0.07);
+        }
+
+
+═══════════════════════════════════════════════════════
